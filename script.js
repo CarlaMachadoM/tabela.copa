@@ -65,11 +65,11 @@ const DEFAULT_MATCHES = {
 ],
 "I":[
 {t1:"França",t2:"Senegal",date:"16/06",time:"16:00"},
-{t1:"Repescagem 2",t2:"Noruega",date:"16/06",time:"19:00"},
-{t1:"França",t2:"Repescagem 2",date:"22/06",time:"18:00"},
+{t1:"Iraque",t2:"Noruega",date:"16/06",time:"19:00"},
+{t1:"França",t2:"Iraque",date:"22/06",time:"18:00"},
 {t1:"Noruega",t2:"Senegal",date:"22/06",time:"21:00"},
 {t1:"Noruega",t2:"França",date:"26/06",time:"16:00"},
-{t1:"Senegal",t2:"Repescagem 2",date:"26/06",time:"16:00"}
+{t1:"Senegal",t2:"Iraque",date:"26/06",time:"16:00"}
 ],
 "J":[
 {t1:"Argentina",t2:"Argélia",date:"16/06",time:"22:00"},
