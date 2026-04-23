@@ -65,11 +65,11 @@ const DEFAULT_MATCHES = {
 ],
 "I":[
 {t1:"França",t2:"Senegal",date:"16/06",time:"16:00"},
-{t1:"Repescagem 2",t2:"Noruega",date:"16/06",time:"19:00"},
-{t1:"França",t2:"Repescagem 2",date:"22/06",time:"18:00"},
+{t1:"Iraque",t2:"Noruega",date:"16/06",time:"19:00"},
+{t1:"França",t2:"Iraque",date:"22/06",time:"18:00"},
 {t1:"Noruega",t2:"Senegal",date:"22/06",time:"21:00"},
 {t1:"Noruega",t2:"França",date:"26/06",time:"16:00"},
-{t1:"Senegal",t2:"Repescagem 2",date:"26/06",time:"16:00"}
+{t1:"Senegal",t2:"Iraque",date:"26/06",time:"16:00"}
 ],
 "J":[
 {t1:"Argentina",t2:"Argélia",date:"16/06",time:"22:00"},
@@ -80,10 +80,10 @@ const DEFAULT_MATCHES = {
 {t1:"Jordânia",t2:"Argentina",date:"27/06",time:"23:00"}
 ],
 "K":[
-{t1:"Portugal",t2:"Repescagem 1",date:"17/06",time:"14:00"},
+{t1:"Portugal",t2:"RD Congo",date:"17/06",time:"14:00"},
 {t1:"Uzbequistão",t2:"Colômbia",date:"17/06",time:"23:00"},
 {t1:"Portugal",t2:"Uzbequistão",date:"23/06",time:"14:00"},
-{t1:"Colômbia",t2:"Repescagem 1",date:"23/06",time:"23:00"},
+{t1:"Colômbia",t2:"RD Congo",date:"23/06",time:"23:00"},
 {t1:"Colômbia",t2:"Portugal",date:"27/06",time:"20:30"},
 {t1:"RD Congo",t2:"Uzbequistão",date:"27/06",time:"20:30"}
 ],
@@ -107,13 +107,24 @@ function load(){
   const data = localStorage.getItem("matches");
 
   if(data){
-    matches = JSON.parse(data); // 🔥 CORREÇÃO PRINCIPAL
+    const saved = JSON.parse(data);
+
+    matches = JSON.parse(JSON.stringify(DEFAULT_MATCHES));
+
+    Object.keys(saved).forEach(group=>{
+      saved[group].forEach((game,i)=>{
+        if(matches[group] && matches[group][i]){
+          matches[group][i].g1 = game.g1;
+          matches[group][i].g2 = game.g2;
+        }
+      });
+    });
+
   } else {
     matches = JSON.parse(JSON.stringify(DEFAULT_MATCHES));
     save();
   }
 }
-
 
 function clearGroup(group){
   matches[group].forEach(g=>{
@@ -124,41 +135,7 @@ function clearGroup(group){
   render();
 }
 
-function createGroup(name,games){
-
-  games.sort((a,b)=>{
-    return new Date(`2026-${a.date.split("/").reverse().join("-")}T${a.time}`) -
-           new Date(`2026-${b.date.split("/").reverse().join("-")}T${b.time}`);
-  });
-
-  const div = document.createElement("div");
-  div.className="card";
-
-  let html = `<h3>Grupo ${name}</h3>`;
-
-  games.forEach((g,i)=>{
-    html += `
-    <div class="match">
-      ${g.date} ${g.time}<br>
-      ${g.t1}
-      <input value="${g.g1 ?? ''}" onchange="update('${name}',${i},0,this.value)">
-      x
-      <input value="${g.g2 ?? ''}" onchange="update('${name}',${i},1,this.value)">
-      ${g.t2}
-    </div>`;
-  });
-
-  html += `
-  <button class="clear-btn" onclick="clearGroup('${name}')">Limpar</button>
-  <div class="standings" id="stand-${name}"></div>`;
-
-  div.innerHTML = html;
-  return div;
-}
-
-
 function update(group,i,side,val){
-
   if(val===""){
     if(side===0) delete matches[group][i].g1;
     else delete matches[group][i].g2;
@@ -166,15 +143,12 @@ function update(group,i,side,val){
     if(side===0) matches[group][i].g1 = parseInt(val);
     else matches[group][i].g2 = parseInt(val);
   }
-
-  save(); // 🔥 ESSENCIAL
+  save();
   render();
 }
 
-
 function calc(group){
   const table = {};
-
   matches[group].forEach(g=>{
     [g.t1,g.t2].forEach(t=>{
       if(!table[t]) table[t]={pts:0,gf:0,ga:0};
@@ -200,12 +174,35 @@ function calc(group){
     .sort((a,b)=>b.pts-a.pts || b.sg-a.sg || b.gf-a.gf);
 }
 
+function createGroup(name,games){
+  const div=document.createElement("div");
+  div.className="card";
+
+  let html=`<h3>Grupo ${name}</h3>`;
+
+  games.forEach((g,i)=>{
+    html+=`
+    <div class="match">
+      ${g.date} ${g.time}<br>
+      ${g.t1}
+      <input value="${g.g1 ?? ''}" onchange="update('${name}',${i},0,this.value)">
+      x
+      <input value="${g.g2 ?? ''}" onchange="update('${name}',${i},1,this.value)">
+      ${g.t2}
+    </div>`;
+  });
+
+  html+=`<button class="clear-btn" onclick="clearGroup('${name}')">Limpar</button>
+  <div class="standings" id="stand-${name}"></div>`;
+
+  div.innerHTML=html;
+  return div;
+}
 
 function generateKnockout(){
   let classificados=[];
-
   Object.keys(matches).forEach(g=>{
-    const res = calc(g);
+    const res=calc(g);
     if(res.length>=2){
       classificados.push(res[0].time,res[1].time);
     }
@@ -216,11 +213,10 @@ function generateKnockout(){
 
   for(let i=0;i<classificados.length;i+=2){
     if(classificados[i+1]){
-      div.innerHTML += `<div>${classificados[i]} x ${classificados[i+1]}</div>`;
+      div.innerHTML+=`<div>${classificados[i]} x ${classificados[i+1]}</div>`;
     }
   }
 }
-
 
 function render(){
   const app=document.getElementById("app");
@@ -229,14 +225,13 @@ function render(){
   Object.entries(matches).forEach(([g,games])=>{
     app.appendChild(createGroup(g,games));
 
-    const res = calc(g);
+    const res=calc(g);
     document.getElementById("stand-"+g).innerHTML =
       res.map(t=>`${t.time} - ${t.pts} pts`).join("<br>");
   });
 
   generateKnockout();
 }
-
 
 function init(){
   load();
