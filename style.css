@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: linear-gradient(135deg, #009c3b, #002776);
+  color: rgb(255, 230, 90);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.container h3{
+  color: rgb(255, 230, 90);
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.match {
+  margin-bottom: 8px;
+}
+
+input {
+  width: 35px;
+  text-align: center;
+}
+
+button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3a66cc;
+}
+
+.clear-btn {
+  background: #4d7fff;
+  color: white;
+}
+
+.standings {
+  margin-top: 10px;
+}
+
+.knockout {
+  text-align: center;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+}
