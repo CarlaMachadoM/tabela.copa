@@ -97,7 +97,6 @@ L:[
 ]
 };
 
-// Datas e locais do mata-mata (horário de Brasília)
 const KO_INFO = {
   "32":[
     {date:"Dom 28/06", time:"22h00", city:"Los Angeles"},
@@ -148,18 +147,40 @@ const KO_INFO = {
 let matches = {};
 let knockout = {};
 
-// ================= STORAGE =================
+const DATA_VERSION = "1.0.0";
+
 function save(){
-  localStorage.setItem("matches", JSON.stringify(matches));
-  localStorage.setItem("knockout", JSON.stringify(knockout));
+  const saveData = {
+    version: DATA_VERSION,
+    matches: matches,
+    knockout: knockout
+  };
+  localStorage.setItem("appData", JSON.stringify(saveData));
 }
 
 function load(){
-  matches = JSON.parse(localStorage.getItem("matches")) || JSON.parse(JSON.stringify(DEFAULT_MATCHES));
-  knockout = JSON.parse(localStorage.getItem("knockout")) || {};
+  const savedData = localStorage.getItem("appData");
+  
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    
+    if (parsedData.version && parsedData.version === DATA_VERSION) {
+      matches = parsedData.matches || JSON.parse(JSON.stringify(DEFAULT_MATCHES));
+      knockout = parsedData.knockout || {};
+    } else {
+      resetToDefault();
+    }
+  } else {
+    resetToDefault();
+  }
 }
 
-// ================= LIMPAR =================
+function resetToDefault() {
+  matches = JSON.parse(JSON.stringify(DEFAULT_MATCHES));
+  knockout = {};
+  save();
+}
+
 function clearGroup(group){
   matches[group].forEach(g=>{
     delete g.g1;
@@ -178,7 +199,6 @@ function clearPhase(phase){
   render();
 }
 
-// ================= UPDATE =================
 function update(group,i,side,val){
   matches[group][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
   save();
@@ -191,7 +211,6 @@ function updateKO(phase,i,side,val){
   render();
 }
 
-// ================= CLASSIFICAÇÃO =================
 function calc(group){
   const table={};
 
@@ -230,7 +249,6 @@ function getLoser(game){
   return game.g1<game.g2 ? game.t1 : game.t2;
 }
 
-// ================= MELHORES TERCEIROS =================
 function getBestThirds(){
   let thirds=[];
 
@@ -242,7 +260,6 @@ function getBestThirds(){
   return thirds.sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf).slice(0,8);
 }
 
-// ================= GRUPOS =================
 function createGroup(name,games){
   const div=document.createElement("div");
   div.className="card";
@@ -268,7 +285,6 @@ function createGroup(name,games){
   return div;
 }
 
-// ================= FASES =================
 function buildPhase(name,teams){
   if(!knockout[name]){
     knockout[name]=[];
@@ -315,7 +331,6 @@ function createPhase(name,title,jogoInicial){
   container.appendChild(btn);
 }
 
-// ================= KNOCKOUT =================
 function generateKnockout(){
   const standings={};
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
@@ -359,7 +374,6 @@ function generateKnockout(){
   createPhase("final","Final",104);
 }
 
-// ================= RENDER =================
 function render(){
   const app=document.getElementById("app");
   app.innerHTML="";
@@ -375,7 +389,6 @@ function render(){
   generateKnockout();
 }
 
-// ================= INIT =================
 function init(){
   load();
   render();
