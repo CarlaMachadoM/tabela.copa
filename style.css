@@ -1,67 +1,103 @@
 body {
   margin: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
   background: linear-gradient(135deg, #009c3b, #002776);
-  color: rgb(255, 230, 90);
+  color: rgb(255,230,90);
 }
 
-h1, h2 {
-  text-align: center;
+h1,h2{
+  text-align:center;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  color: rgb(255, 255, 255);
+.container,
+.knockout{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;
+  padding:20px;
 }
 
-.container h3{
-  color: rgb(255, 230, 90);
+.card{
+  background:white;
+  border-radius:16px;
+  padding:15px;
+  border:1px solid #000;
 }
 
-.card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 15px;
-  backdrop-filter: blur(10px);
+.card h3{
+  color:#002776;
 }
 
-.match {
-  margin-bottom: 8px;
+.match{
+  margin-bottom:10px;
+  color:black;
 }
 
-input {
-  width: 35px;
-  text-align: center;
+input{
+  width:35px;
+  text-align:center;
 }
 
-button {
-  margin-top: 8px;
-  width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
+button{
+  margin-top:8px;
+  width:100%;
+  padding:8px;
+  border:none;
+  border-radius:8px;
+  background:#4dc039;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-button:hover {
-  background: #3a66cc;
+button:hover{
+  background:#daff21;
 }
 
-.clear-btn {
-  background: #4d7fff;
-  color: white;
+.standings{
+  margin-top:10px;
+  color:black;
+  font-weight:bold;
 }
 
-.standings {
-  margin-top: 10px;
+.phase-title{
+  text-align:center;
+  color:white;
 }
 
 .knockout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 30px;
+}
+
+.phase-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 25px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 22px;
+  backdrop-filter: blur(8px);
+}
+
+.phase-column h2 {
   text-align: center;
-  padding: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(255,230,90);
+  margin: 0 0 20px;
+  font-size: 2rem;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+  padding-bottom: 15px;
+}
+
+.phase-column .card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.phase-column button {
+  margin-top: 10px;
 }
