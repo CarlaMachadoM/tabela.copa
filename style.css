@@ -33,6 +33,16 @@ h1,h2{
   color:black;
 }
 
+.match-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
+  color: #3f5df1;
+  font-style: italic;
+  font-size: small;
+}
+
 input{
   width:35px;
   text-align:center;
