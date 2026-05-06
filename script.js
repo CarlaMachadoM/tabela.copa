@@ -1,16 +1,101 @@
+
 const DEFAULT_MATCHES = {
-A:[{t1:"México",t2:"África do Sul"},{t1:"Coreia do Sul",t2:"República Tcheca"}],
-B:[{t1:"Canadá",t2:"Bósnia e Herzegovina"},{t1:"Catar",t2:"Suíça"}],
-C:[{t1:"Brasil",t2:"Marrocos"},{t1:"Haiti",t2:"Escócia"}],
-D:[{t1:"Estados Unidos",t2:"Paraguai"},{t1:"Austrália",t2:"Turquia"}],
-E:[{t1:"Alemanha",t2:"Curaçao"}],
-F:[{t1:"Países Baixos",t2:"Japão"}],
-G:[{t1:"Bélgica",t2:"Egito"}],
-H:[{t1:"Espanha",t2:"Cabo Verde"}],
-I:[{t1:"França",t2:"Senegal"}],
-J:[{t1:"Argentina",t2:"Argélia"}],
-K:[{t1:"Portugal",t2:"Repescagem 1"}],
-L:[{t1:"Inglaterra",t2:"Croácia"}]
+A:[
+{t1:"México",t2:"África do Sul"},
+{t1:"Coreia do Sul",t2:"República Tcheca"},
+{t1:"República Tcheca",t2:"África do Sul"},
+{t1:"México",t2:"Coreia do Sul"},
+{t1:"República Tcheca",t2:"México"},
+{t1:"África do Sul",t2:"Coreia do Sul"}
+],
+B:[
+{t1:"Canadá",t2:"Bósnia e Herzegovina"},
+{t1:"Catar",t2:"Suíça"},
+{t1:"Suíça",t2:"Canadá"},
+{t1:"Canadá",t2:"Catar"},
+{t1:"Suíça",t2:"Bósnia e Herzegovina"},
+{t1:"Catar",t2:"Bósnia e Herzegovina"}
+],
+C:[
+{t1:"Brasil",t2:"Marrocos"},
+{t1:"Haiti",t2:"Escócia"},
+{t1:"Escócia",t2:"Marrocos"},
+{t1:"Brasil",t2:"Haiti"},
+{t1:"Escócia",t2:"Brasil"},
+{t1:"Marrocos",t2:"Haiti"}
+],
+D:[
+{t1:"Estados Unidos",t2:"Paraguai"},
+{t1:"Austrália",t2:"Turquia"},
+{t1:"Turquia",t2:"Paraguai"},
+{t1:"Estados Unidos",t2:"Austrália"},
+{t1:"Turquia",t2:"Estados Unidos"},
+{t1:"Paraguai",t2:"Austrália"}
+],
+E:[
+{t1:"Alemanha",t2:"Curaçao"},
+{t1:"Costa do Marfim",t2:"Equador"},
+{t1:"Alemanha",t2:"Costa do Marfim"},
+{t1:"Equador",t2:"Curaçao"},
+{t1:"Equador",t2:"Alemanha"},
+{t1:"Curaçao",t2:"Costa do Marfim"}
+],
+F:[
+{t1:"Países Baixos",t2:"Japão"},
+{t1:"Suécia",t2:"Tunísia"},
+{t1:"Países Baixos",t2:"Suécia"},
+{t1:"Tunísia",t2:"Japão"},
+{t1:"Japão",t2:"Suécia"},
+{t1:"Tunísia",t2:"Países Baixos"}
+],
+G:[
+{t1:"Bélgica",t2:"Egito"},
+{t1:"Irã",t2:"Nova Zelândia"},
+{t1:"Bélgica",t2:"Irã"},
+{t1:"Nova Zelândia",t2:"Egito"},
+{t1:"Egito",t2:"Irã"},
+{t1:"Nova Zelândia",t2:"Bélgica"}
+],
+H:[
+{t1:"Espanha",t2:"Cabo Verde"},
+{t1:"Arábia Saudita",t2:"Uruguai"},
+{t1:"Espanha",t2:"Arábia Saudita"},
+{t1:"Uruguai",t2:"Cabo Verde"},
+{t1:"Cabo Verde",t2:"Arábia Saudita"},
+{t1:"Uruguai",t2:"Espanha"}
+],
+I:[
+{t1:"França",t2:"Senegal"},
+{t1:"Iraque",t2:"Noruega"},
+{t1:"França",t2:"Iraque"},
+{t1:"Noruega",t2:"Senegal"},
+{t1:"Noruega",t2:"França"},
+{t1:"Senegal",t2:"Iraque"}
+],
+J:[
+{t1:"Argentina",t2:"Argélia"},
+{t1:"Áustria",t2:"Jordânia"},
+{t1:"Argentina",t2:"Áustria"},
+{t1:"Jordânia",t2:"Argélia"},
+{t1:"Argélia",t2:"Áustria"},
+{t1:"Jordânia",t2:"Argentina"}
+],
+K:[
+{t1:"Portugal",t2:"RD Congo"},
+{t1:"Uzbequistão",t2:"Colômbia"},
+{t1:"Portugal",t2:"Uzbequistão"},
+{t1:"Colômbia",t2:"RD Congo"},
+{t1:"Colômbia",t2:"Portugal"},
+{t1:"RD Congo",t2:"Uzbequistão"}
+],
+L:[
+{t1:"Inglaterra",t2:"Croácia"},
+{t1:"Gana",t2:"Panamá"},
+{t1:"Inglaterra",t2:"Gana"},
+{t1:"Panamá",t2:"Croácia"},
+{t1:"Panamá",t2:"Inglaterra"},
+{t1:"Croácia",t2:"Gana"}
+]
 };
 
 let matches = {};
