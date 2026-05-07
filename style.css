@@ -43,6 +43,7 @@ h1,h2{
   font-size: small;
 }
 
+
 input{
   width:35px;
   text-align:center;
@@ -110,4 +111,58 @@ button:hover{
 
 .phase-column button {
   margin-top: 10px;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;
+}
+
+.team-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+
+.team-label:last-of-type {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+.team-flag {
+  width: 24px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border: 1px solid #ddd;
+}
+
+.team-name {
+  font-size: 0.85em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vs {
+  font-weight: bold;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.stand-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  font-size: 0.88em;
+}
+
+.stand-row img {
+  border: 1px solid #ddd;
 }

@@ -1,3 +1,60 @@
+const COUNTRY_CODES = {
+  "México":                "mx",
+  "África do Sul":         "za",
+  "Coreia do Sul":         "kr",
+  "República Tcheca":      "cz",
+  "Canadá":                "ca",
+  "Bósnia e Herzegovina":  "ba",
+  "Catar":                 "qa",
+  "Suíça":                 "ch",
+  "Brasil":                "br",
+  "Marrocos":              "ma",
+  "Haiti":                 "ht",
+  "Escócia":               "gb-sct",
+  "Estados Unidos":        "us",
+  "Paraguai":              "py",
+  "Austrália":             "au",
+  "Turquia":               "tr",
+  "Alemanha":              "de",
+  "Curaçao":               "cw",
+  "Costa do Marfim":       "ci",
+  "Equador":               "ec",
+  "Países Baixos":         "nl",
+  "Japão":                 "jp",
+  "Suécia":                "se",
+  "Tunísia":               "tn",
+  "Bélgica":               "be",
+  "Egito":                 "eg",
+  "Irã":                   "ir",
+  "Nova Zelândia":         "nz",
+  "Espanha":               "es",
+  "Cabo Verde":            "cv",
+  "Arábia Saudita":        "sa",
+  "Uruguai":               "uy",
+  "França":                "fr",
+  "Senegal":               "sn",
+  "Iraque":                "iq",
+  "Noruega":               "no",
+  "Argentina":             "ar",
+  "Argélia":               "dz",
+  "Áustria":               "at",
+  "Jordânia":              "jo",
+  "Portugal":              "pt",
+  "RD Congo":              "cd",
+  "Uzbequistão":           "uz",
+  "Colômbia":              "co",
+  "Inglaterra":            "gb-eng",
+  "Croácia":               "hr",
+  "Gana":                  "gh",
+  "Panamá":                "pa",
+};
+
+function flag(team) {
+  const code = COUNTRY_CODES[team];
+  if (!code) return "";
+  return `<img class="team-flag" src="https://flagcdn.com/24x18/${code}.png" alt="${team}">`;
+}
+
 const DEFAULT_MATCHES = {
 A:[
   {t1:"México",          t2:"África do Sul",       date:"Qui 11/06", time:"16h00",  city:"Cidade do México"},
@@ -150,20 +207,14 @@ let knockout = {};
 const DATA_VERSION = "1.0.0";
 
 function save(){
-  const saveData = {
-    version: DATA_VERSION,
-    matches: matches,
-    knockout: knockout
-  };
+  const saveData = { version: DATA_VERSION, matches, knockout };
   localStorage.setItem("appData", JSON.stringify(saveData));
 }
 
 function load(){
   const savedData = localStorage.getItem("appData");
-  
   if (savedData) {
     const parsedData = JSON.parse(savedData);
-    
     if (parsedData.version && parsedData.version === DATA_VERSION) {
       matches = parsedData.matches || JSON.parse(JSON.stringify(DEFAULT_MATCHES));
       knockout = parsedData.knockout || {};
@@ -182,58 +233,37 @@ function resetToDefault() {
 }
 
 function clearGroup(group){
-  matches[group].forEach(g=>{
-    delete g.g1;
-    delete g.g2;
-  });
-  save();
-  render();
+  matches[group].forEach(g=>{ delete g.g1; delete g.g2; });
+  save(); render();
 }
 
 function clearPhase(phase){
-  knockout[phase]?.forEach(g=>{
-    delete g.g1;
-    delete g.g2;
-  });
-  save();
-  render();
+  knockout[phase]?.forEach(g=>{ delete g.g1; delete g.g2; });
+  save(); render();
 }
 
 function update(group,i,side,val){
   matches[group][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
-  save();
-  render();
+  save(); render();
 }
 
 function updateKO(phase,i,side,val){
   knockout[phase][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
-  save();
-  render();
+  save(); render();
 }
 
 function calc(group){
   const table={};
-
   matches[group].forEach(g=>{
-    [g.t1,g.t2].forEach(t=>{
-      if(!table[t]) table[t]={pts:0,gf:0,ga:0};
-    });
-
+    [g.t1,g.t2].forEach(t=>{ if(!table[t]) table[t]={pts:0,gf:0,ga:0}; });
     if(g.g1!=null && g.g2!=null){
-      table[g.t1].gf+=g.g1;
-      table[g.t1].ga+=g.g2;
-      table[g.t2].gf+=g.g2;
-      table[g.t2].ga+=g.g1;
-
+      table[g.t1].gf+=g.g1; table[g.t1].ga+=g.g2;
+      table[g.t2].gf+=g.g2; table[g.t2].ga+=g.g1;
       if(g.g1>g.g2) table[g.t1].pts+=3;
       else if(g.g2>g.g1) table[g.t2].pts+=3;
-      else{
-        table[g.t1].pts++;
-        table[g.t2].pts++;
-      }
+      else{ table[g.t1].pts++; table[g.t2].pts++; }
     }
   });
-
   return Object.entries(table)
     .map(([t,v])=>({...v,time:t,sg:v.gf-v.ga}))
     .sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf);
@@ -251,36 +281,31 @@ function getLoser(game){
 
 function getBestThirds(){
   let thirds=[];
-
-  Object.keys(matches).forEach(g=>{
-    const res=calc(g);
-    if(res[2]) thirds.push(res[2]);
-  });
-
+  Object.keys(matches).forEach(g=>{ const res=calc(g); if(res[2]) thirds.push(res[2]); });
   return thirds.sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf).slice(0,8);
+}
+
+function teamLabel(name){
+  return `<span class="team-label">${flag(name)}<span class="team-name">${name}</span></span>`;
 }
 
 function createGroup(name,games){
   const div=document.createElement("div");
   div.className="card";
-
   let html=`<h3>Grupo ${name}</h3>`;
-
   games.forEach((g,i)=>{
     html+=`
     <div class="match-meta">${g.date} · ${g.time} (Brasília) · ${g.city}</div>
     <div class="match">
-      ${g.t1}
+      ${teamLabel(g.t1)}
       <input value="${g.g1??''}" onchange="update('${name}',${i},0,this.value)">
-      x
+      <span class="vs">x</span>
       <input value="${g.g2??''}" onchange="update('${name}',${i},1,this.value)">
-      ${g.t2}
+      ${teamLabel(g.t2)}
     </div>`;
   });
-
   html+=`<button onclick="clearGroup('${name}')">Limpar</button>
   <div class="standings" id="stand-${name}"></div>`;
-
   div.innerHTML=html;
   return div;
 }
@@ -288,19 +313,14 @@ function createGroup(name,games){
 function buildPhase(name,teams){
   if(!knockout[name]){
     knockout[name]=[];
-
     for(let i=0;i<teams.length;i+=2){
-      knockout[name].push({
-        t1:teams[i],
-        t2:teams[i+1]
-      });
+      knockout[name].push({ t1:teams[i], t2:teams[i+1] });
     }
   }
 }
 
 function createPhase(name,title,jogoInicial){
   const container=document.getElementById("phase32");
-
   const h=document.createElement("h2");
   h.innerText=title;
   container.appendChild(h);
@@ -309,19 +329,16 @@ function createPhase(name,title,jogoInicial){
     const info=KO_INFO[name]?.[i];
     const div=document.createElement("div");
     div.className="card";
-
     div.innerHTML=`
       <h3>${title} - Jogo ${jogoInicial+i}</h3>
       ${info?`<div class="match-meta">${info.date} · ${info.time} (Brasília) · ${info.city}</div>`:""}
       <div class="match">
-        ${g.t1}
+        ${teamLabel(g.t1)}
         <input value="${g.g1??''}" onchange="updateKO('${name}',${i},0,this.value)">
-        x
+        <span class="vs">x</span>
         <input value="${g.g2??''}" onchange="updateKO('${name}',${i},1,this.value)">
-        ${g.t2}
-      </div>
-    `;
-
+        ${teamLabel(g.t2)}
+      </div>`;
     container.appendChild(div);
   });
 
@@ -334,7 +351,6 @@ function createPhase(name,title,jogoInicial){
 function generateKnockout(){
   const standings={};
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
-
   const thirds=getBestThirds();
 
   const phase32Teams=[
@@ -377,21 +393,14 @@ function generateKnockout(){
 function render(){
   const app=document.getElementById("app");
   app.innerHTML="";
-
   Object.entries(matches).forEach(([g,games])=>{
     app.appendChild(createGroup(g,games));
-
     const res=calc(g);
     document.getElementById("stand-"+g).innerHTML=
-      res.map((t,i)=>`${i+1}º ${t.time} - ${t.pts} pts`).join("<br>");
+      res.map((t,i)=>`<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`).join("");
   });
-
   generateKnockout();
 }
 
-function init(){
-  load();
-  render();
-}
-
+function init(){ load(); render(); }
 init();
