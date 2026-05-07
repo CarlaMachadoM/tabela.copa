@@ -62,7 +62,9 @@ button{
 }
 
 button:hover{
-  background:#daff21;
+  background:#fbff21;
+  transition: 1s;
+  color: #000000;
 }
 
 .standings{
