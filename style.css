@@ -63,7 +63,7 @@ button{
 
 button:hover{
   background:#fbff21;
-  transition: 1s;
+  transition: background 2s, color 2s;
   color: #000;
 }
 
@@ -164,6 +164,3 @@ button:hover{
   font-size: 0.85em;
 }
 
-.stand-row img {
-  border: 1px solid #ddd;
-}
