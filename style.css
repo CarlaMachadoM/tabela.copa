@@ -1,132 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family:'Courier New', Courier, monospace  ;  
+  font-family: 'Courier New', Courier, monospace;
   background: linear-gradient(135deg, #009c3b, #002776);
-  color: rgb(255,230,90);
+  color: rgb(255, 230, 90);
 }
 
-h1,h2{
-  text-align:center;
-}
-
-.container,
-.knockout{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:20px;
-  padding:20px;
-}
-
-.card{
-  background:white;
-  border-radius:16px;
-  padding:15px;
-  border:1px solid #000;
-}
-
-.card h3{
-  color:#002776;
-}
-
-.match{
-  margin-bottom:10px;
-  color:black;
-}
-
-.match-meta{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:10px;
-  color: #3f5df1;
-  font-style: italic;
-  font-size: small;
-}
-
-
-input{
-  width:35px;
-  text-align:center;
-}
-
-button{
-  margin-top:8px;
-  width:100%;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  background:#4dc039;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:hover{
-  background:#fbff21;
-  transition: background 2s, color 2s;
-  color: #000;
-}
-
-.standings{
-  margin-top:10px;
-  color:black;
-  font-weight:bold;
-}
-
-.phase-title{
-  text-align:center;
-  color:white;
-}
-
-.knockout {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding: 30px;
-}
-
-.phase-column {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 25px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 22px;
-  backdrop-filter: blur(8px);
-}
-
-.phase-column h2 {
+h1, h2 {
   text-align: center;
-  color: rgb(255,230,90);
-  margin: 0 0 20px;
-  font-size: 2rem;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
-  padding-bottom: 15px;
+  margin: 0.5rem 0;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.phase-column .card {
+h1 {
+  padding: 1rem 0 0.25rem;
+}
+
+section {
+  padding: 0.5rem 0;
+}
+
+section > h2 {
+  padding: 0.25rem 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  padding: 10px 16px 16px;
+}
+
+.card {
   background: white;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  padding: 10px 12px 8px;
+  border: 1px solid #000;
+  color: #000;
+  font-size: larger;
 }
 
-.phase-column button {
-  margin-top: 10px;
+.card h3 {
+  color: #002776;
+  margin: 0 0 6px;
+  font-size: 0.95rem;
 }
 
 .match {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 5px;
+  margin-bottom: 4px;
   flex-wrap: nowrap;
+}
+
+.match-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #3f5df1;
+  font-style: italic;
+  font-size: 0.72rem;
+  margin: 6px 0 2px;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 
 .team-label {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   flex: 1;
   min-width: 0;
 }
@@ -144,23 +90,108 @@ button:hover{
 }
 
 .team-name {
-  font-size: 0.85em;
+  font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: medium;
 }
 
 .vs {
   font-weight: bold;
   color: #555;
   flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+input {
+  width: 32px;
+  text-align: center;
+  padding: 1px 2px;
+  font-size: 0.85rem;
+}
+
+button {
+  margin-top: 6px;
+  width: 100%;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 8px;
+  background: #4dc039;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button:hover {
+  background: #fbff21;
+  transition: background 1s, color 0.3s;
+  color: #000;
+}
+
+.standings {
+  margin-top: 6px;
+  color: black;
+  font-weight: bold;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 4px;
 }
 
 .stand-row {
   display: flex;
-  align-items:flex-start;
-  gap: 6px;
-  padding: 2px 0;
-  font-size: 0.85em;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 0;
+  font-size: 0.78rem;
+  flex-wrap: nowrap;
 }
 
+.stand-row strong {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phase-title {
+  text-align: center;
+  color: white;
+}
+
+.knockout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 10px 16px 20px;
+}
+
+.phase-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+}
+
+.phase-column h2 {
+  color: rgb(255, 230, 90);
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.phase-column .card {
+  background: white;
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.phase-column button {
+  margin-top: 8px;
+}
