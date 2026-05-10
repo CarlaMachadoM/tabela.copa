@@ -274,7 +274,7 @@ function calc(group){
 
 function getWinner(game){
   if(!game || game.g1==null || game.g2==null) return "---";
-  if(game.g1===game.g2) return "---"; // empate na fase eliminatória = indefinido
+  if(game.g1===game.g2) return "---"; 
   return game.g1>game.g2 ? game.t1 : game.t2;
 }
 
@@ -300,11 +300,7 @@ function teamLabel(name){
   return `<span class="team-label">${flag(name)}<span class="team-name">${display}</span></span>`;
 }
 
-// ─── CORREÇÃO PRINCIPAL ────────────────────────────────────────────────────
-// buildPhase agora tem dois comportamentos:
-//   1. Se a fase não existe ainda → cria do zero
-//   2. Se a fase já existe → só atualiza t1/t2 de cada jogo,
-//      preservando os placares (g1/g2) já digitados pelo usuário
+
 function buildPhase(name, teams){
   if(!knockout[name]){
     // Primeira vez: cria a fase inteira
@@ -316,12 +312,10 @@ function buildPhase(name, teams){
       });
     }
   } else {
-    // Fase já existe: atualiza só os nomes dos times, mantém placares
     for(let i=0; i<knockout[name].length; i++){
       const novoT1 = teams[i*2]   ?? "---";
       const novoT2 = teams[i*2+1] ?? "---";
 
-      // Se o time mudou, o placar anterior deixa de fazer sentido → limpa
       if(knockout[name][i].t1 !== novoT1){
         knockout[name][i].t1 = novoT1;
         delete knockout[name][i].g1;
@@ -392,9 +386,7 @@ function generateKnockout(){
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
   const thirds=getBestThirds();
 
-  // Os 32 classificados vêm sempre dos grupos → força recalcular deletando a fase
-  // (os placares dos jogos de 32-avos são preservados dentro de buildPhase
-  //  via comparação de nomes; se o classificado mudou, o placar é zerado)
+  
   delete knockout["32"];
 
   const phase32Teams=[
@@ -416,24 +408,21 @@ function generateKnockout(){
     standings.D?.[1]?.time ?? "---", standings.G?.[1]?.time ?? "---"
   ];
 
-  // Para fases a partir das oitavas: buildPhase atualiza t1/t2 a partir
-  // dos vencedores calculados, preservando placares se o time não mudou.
-  // Cada par de jogos consecutivos da fase anterior alimenta um jogo da fase seguinte.
   buildPhase("32", phase32Teams);
 
-  const winners32 = knockout["32"].map(getWinner); // 16 vencedores
-  buildPhase("16", winners32);                      // 8 jogos de oitavas
+  const winners32 = knockout["32"].map(getWinner); 
+  buildPhase("16", winners32);                      
 
-  const winners16 = knockout["16"].map(getWinner); // 8 vencedores
-  buildPhase("8", winners16);                       // 4 jogos de quartas
+  const winners16 = knockout["16"].map(getWinner); 
+  buildPhase("8", winners16);                       
 
-  const winners8 = knockout["8"].map(getWinner);   // 4 vencedores
-  buildPhase("4", winners8);                        // 2 semifinais
+  const winners8 = knockout["8"].map(getWinner);   
+  buildPhase("4", winners8);                        
 
-  const losers4   = knockout["4"].map(getLoser);   // 2 perdedores das semis
-  const winners4  = knockout["4"].map(getWinner);  // 2 vencedores das semis
-  buildPhase("3",    losers4);                      // 1 jogo de 3º lugar
-  buildPhase("final", winners4);                    // 1 final
+  const losers4   = knockout["4"].map(getLoser);   
+  const winners4  = knockout["4"].map(getWinner);  
+  buildPhase("3",    losers4);                      
+  buildPhase("final", winners4);                   
 
   const div=document.getElementById("phase32");
   div.innerHTML="";
@@ -456,7 +445,7 @@ function render(){
       res.map((t,i)=>`<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`).join("");
   });
   generateKnockout();
-  save(); // salva após recalcular tudo, incluindo os nomes atualizados nas fases KO
+  save();
 }
 
 function init(){ load(); render(); }
