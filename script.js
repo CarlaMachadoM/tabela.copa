@@ -238,7 +238,9 @@ function clearGroup(group){
 }
 
 function clearPhase(phase){
-  knockout[phase]?.forEach(g=>{ delete g.g1; delete g.g2; });
+  if (knockout[phase]) {
+    knockout[phase].forEach(g=>{ delete g.g1; delete g.g2; });
+  }
   save(); render();
 }
 
@@ -248,6 +250,7 @@ function update(group,i,side,val){
 }
 
 function updateKO(phase,i,side,val){
+  if (!knockout[phase] || !knockout[phase][i]) return;
   knockout[phase][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
   save(); render();
 }
@@ -270,23 +273,67 @@ function calc(group){
 }
 
 function getWinner(game){
-  if(game?.g1==null||game?.g2==null) return "---";
+  if(!game || game.g1==null || game.g2==null) return "---";
+  if(game.g1===game.g2) return "---"; // empate na fase eliminatória = indefinido
   return game.g1>game.g2 ? game.t1 : game.t2;
 }
 
 function getLoser(game){
-  if(game?.g1==null||game?.g2==null) return "---";
+  if(!game || game.g1==null || game.g2==null) return "---";
+  if(game.g1===game.g2) return "---";
   return game.g1<game.g2 ? game.t1 : game.t2;
 }
 
 function getBestThirds(){
   let thirds=[];
-  Object.keys(matches).forEach(g=>{ const res=calc(g); if(res[2]) thirds.push(res[2]); });
-  return thirds.sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf).slice(0,8);
+  Object.keys(matches).forEach(g=>{
+    const res=calc(g);
+    if(res[2]) thirds.push(res[2]);
+  });
+  return thirds
+    .sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf)
+    .slice(0,8);
 }
 
 function teamLabel(name){
-  return `<span class="team-label">${flag(name)}<span class="team-name">${name}</span></span>`;
+  const display = (!name || name==="---") ? "A definir" : name;
+  return `<span class="team-label">${flag(name)}<span class="team-name">${display}</span></span>`;
+}
+
+// ─── CORREÇÃO PRINCIPAL ────────────────────────────────────────────────────
+// buildPhase agora tem dois comportamentos:
+//   1. Se a fase não existe ainda → cria do zero
+//   2. Se a fase já existe → só atualiza t1/t2 de cada jogo,
+//      preservando os placares (g1/g2) já digitados pelo usuário
+function buildPhase(name, teams){
+  if(!knockout[name]){
+    // Primeira vez: cria a fase inteira
+    knockout[name] = [];
+    for(let i=0; i<teams.length; i+=2){
+      knockout[name].push({
+        t1: teams[i]   ?? "---",
+        t2: teams[i+1] ?? "---"
+      });
+    }
+  } else {
+    // Fase já existe: atualiza só os nomes dos times, mantém placares
+    for(let i=0; i<knockout[name].length; i++){
+      const novoT1 = teams[i*2]   ?? "---";
+      const novoT2 = teams[i*2+1] ?? "---";
+
+      // Se o time mudou, o placar anterior deixa de fazer sentido → limpa
+      if(knockout[name][i].t1 !== novoT1){
+        knockout[name][i].t1 = novoT1;
+        delete knockout[name][i].g1;
+        delete knockout[name][i].g2;
+      }
+      if(knockout[name][i].t2 !== novoT2){
+        knockout[name][i].t2 = novoT2;
+        delete knockout[name][i].g1;
+        delete knockout[name][i].g2;
+      }
+    }
+  }
 }
 
 function createGroup(name,games){
@@ -310,17 +357,9 @@ function createGroup(name,games){
   return div;
 }
 
-function buildPhase(name,teams){
-  if(!knockout[name]){
-    knockout[name]=[];
-    for(let i=0;i<teams.length;i+=2){
-      knockout[name].push({ t1:teams[i], t2:teams[i+1] });
-    }
-  }
-}
-
 function createPhase(name,title,jogoInicial){
   const container=document.getElementById("phase32");
+
   const h=document.createElement("h2");
   h.innerText=title;
   container.appendChild(h);
@@ -353,41 +392,58 @@ function generateKnockout(){
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
   const thirds=getBestThirds();
 
+  // Os 32 classificados vêm sempre dos grupos → força recalcular deletando a fase
+  // (os placares dos jogos de 32-avos são preservados dentro de buildPhase
+  //  via comparação de nomes; se o classificado mudou, o placar é zerado)
+  delete knockout["32"];
+
   const phase32Teams=[
-    standings.A?.[1]?.time, standings.B?.[1]?.time,
-    standings.E?.[0]?.time, thirds[0]?.time,
-    standings.F?.[0]?.time, standings.C?.[1]?.time,
-    standings.C?.[0]?.time, standings.F?.[1]?.time,
-    standings.I?.[0]?.time, thirds[1]?.time,
-    standings.E?.[1]?.time, standings.I?.[1]?.time,
-    standings.A?.[0]?.time, thirds[2]?.time,
-    standings.L?.[0]?.time, thirds[3]?.time,
-    standings.D?.[0]?.time, thirds[4]?.time,
-    standings.G?.[0]?.time, thirds[5]?.time,
-    standings.K?.[1]?.time, standings.L?.[1]?.time,
-    standings.H?.[0]?.time, standings.J?.[1]?.time,
-    standings.B?.[0]?.time, thirds[6]?.time,
-    standings.J?.[0]?.time, standings.H?.[1]?.time,
-    standings.K?.[0]?.time, thirds[7]?.time,
-    standings.D?.[1]?.time, standings.G?.[1]?.time
+    standings.A?.[1]?.time ?? "---", standings.B?.[1]?.time ?? "---",
+    standings.E?.[0]?.time ?? "---", thirds[0]?.time       ?? "---",
+    standings.F?.[0]?.time ?? "---", standings.C?.[1]?.time ?? "---",
+    standings.C?.[0]?.time ?? "---", standings.F?.[1]?.time ?? "---",
+    standings.I?.[0]?.time ?? "---", thirds[1]?.time        ?? "---",
+    standings.E?.[1]?.time ?? "---", standings.I?.[1]?.time ?? "---",
+    standings.A?.[0]?.time ?? "---", thirds[2]?.time        ?? "---",
+    standings.L?.[0]?.time ?? "---", thirds[3]?.time        ?? "---",
+    standings.D?.[0]?.time ?? "---", thirds[4]?.time        ?? "---",
+    standings.G?.[0]?.time ?? "---", thirds[5]?.time        ?? "---",
+    standings.K?.[1]?.time ?? "---", standings.L?.[1]?.time ?? "---",
+    standings.H?.[0]?.time ?? "---", standings.J?.[1]?.time ?? "---",
+    standings.B?.[0]?.time ?? "---", thirds[6]?.time        ?? "---",
+    standings.J?.[0]?.time ?? "---", standings.H?.[1]?.time ?? "---",
+    standings.K?.[0]?.time ?? "---", thirds[7]?.time        ?? "---",
+    standings.D?.[1]?.time ?? "---", standings.G?.[1]?.time ?? "---"
   ];
 
-  buildPhase("32",phase32Teams);
-  buildPhase("16",knockout["32"].map(getWinner));
-  buildPhase("8",knockout["16"].map(getWinner));
-  buildPhase("4",knockout["8"].map(getWinner));
-  buildPhase("3",[...knockout["4"].map(getLoser)]);
-  buildPhase("final",knockout["4"].map(getWinner));
+  // Para fases a partir das oitavas: buildPhase atualiza t1/t2 a partir
+  // dos vencedores calculados, preservando placares se o time não mudou.
+  // Cada par de jogos consecutivos da fase anterior alimenta um jogo da fase seguinte.
+  buildPhase("32", phase32Teams);
+
+  const winners32 = knockout["32"].map(getWinner); // 16 vencedores
+  buildPhase("16", winners32);                      // 8 jogos de oitavas
+
+  const winners16 = knockout["16"].map(getWinner); // 8 vencedores
+  buildPhase("8", winners16);                       // 4 jogos de quartas
+
+  const winners8 = knockout["8"].map(getWinner);   // 4 vencedores
+  buildPhase("4", winners8);                        // 2 semifinais
+
+  const losers4   = knockout["4"].map(getLoser);   // 2 perdedores das semis
+  const winners4  = knockout["4"].map(getWinner);  // 2 vencedores das semis
+  buildPhase("3",    losers4);                      // 1 jogo de 3º lugar
+  buildPhase("final", winners4);                    // 1 final
 
   const div=document.getElementById("phase32");
   div.innerHTML="";
 
-  createPhase("32","32-avos",73);
-  createPhase("16","Oitavas",89);
-  createPhase("8","Quartas",97);
-  createPhase("4","Semifinais",101);
-  createPhase("3","3º Lugar",103);
-  createPhase("final","Final",104);
+  createPhase("32",    "32-avos",    73);
+  createPhase("16",    "Oitavas",    89);
+  createPhase("8",     "Quartas",    97);
+  createPhase("4",     "Semifinais", 101);
+  createPhase("3",     "3º Lugar",   103);
+  createPhase("final", "Final",      104);
 }
 
 function render(){
@@ -400,6 +456,7 @@ function render(){
       res.map((t,i)=>`<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`).join("");
   });
   generateKnockout();
+  save(); // salva após recalcular tudo, incluindo os nomes atualizados nas fases KO
 }
 
 function init(){ load(); render(); }
