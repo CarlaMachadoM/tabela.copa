@@ -274,7 +274,7 @@ function calc(group){
 
 function getWinner(game){
   if(!game || game.g1==null || game.g2==null) return "---";
-  if(game.g1===game.g2) return "---"; 
+  if(game.g1===game.g2) return "---";
   return game.g1>game.g2 ? game.t1 : game.t2;
 }
 
@@ -300,10 +300,8 @@ function teamLabel(name){
   return `<span class="team-label">${flag(name)}<span class="team-name">${display}</span></span>`;
 }
 
-
 function buildPhase(name, teams){
   if(!knockout[name]){
-    // Primeira vez: cria a fase inteira
     knockout[name] = [];
     for(let i=0; i<teams.length; i+=2){
       knockout[name].push({
@@ -315,7 +313,6 @@ function buildPhase(name, teams){
     for(let i=0; i<knockout[name].length; i++){
       const novoT1 = teams[i*2]   ?? "---";
       const novoT2 = teams[i*2+1] ?? "---";
-
       if(knockout[name][i].t1 !== novoT1){
         knockout[name][i].t1 = novoT1;
         delete knockout[name][i].g1;
@@ -386,12 +383,9 @@ function generateKnockout(){
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
   const thirds=getBestThirds();
 
-  
-  delete knockout["32"];
-
   const phase32Teams=[
     standings.A?.[1]?.time ?? "---", standings.B?.[1]?.time ?? "---",
-    standings.E?.[0]?.time ?? "---", thirds[0]?.time       ?? "---",
+    standings.E?.[0]?.time ?? "---", thirds[0]?.time        ?? "---",
     standings.F?.[0]?.time ?? "---", standings.C?.[1]?.time ?? "---",
     standings.C?.[0]?.time ?? "---", standings.F?.[1]?.time ?? "---",
     standings.I?.[0]?.time ?? "---", thirds[1]?.time        ?? "---",
@@ -410,19 +404,19 @@ function generateKnockout(){
 
   buildPhase("32", phase32Teams);
 
-  const winners32 = knockout["32"].map(getWinner); 
-  buildPhase("16", winners32);                      
+  const winners32 = knockout["32"].map(getWinner);
+  buildPhase("16", winners32);
 
-  const winners16 = knockout["16"].map(getWinner); 
-  buildPhase("8", winners16);                       
+  const winners16 = knockout["16"].map(getWinner);
+  buildPhase("8", winners16);
 
-  const winners8 = knockout["8"].map(getWinner);   
-  buildPhase("4", winners8);                        
+  const winners8 = knockout["8"].map(getWinner);
+  buildPhase("4", winners8);
 
-  const losers4   = knockout["4"].map(getLoser);   
-  const winners4  = knockout["4"].map(getWinner);  
-  buildPhase("3",    losers4);                      
-  buildPhase("final", winners4);                   
+  const losers4  = knockout["4"].map(getLoser);
+  const winners4 = knockout["4"].map(getWinner);
+  buildPhase("3",     losers4);
+  buildPhase("final", winners4);
 
   const div=document.getElementById("phase32");
   div.innerHTML="";
