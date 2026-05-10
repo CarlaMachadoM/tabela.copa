@@ -5,14 +5,14 @@
 body {
   margin: 0;
   font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(135deg, #009c3b, #002776);
-  color: rgb(255, 230, 90);
+  background: linear-gradient(135deg, #009b3a, #002776);
+  color: #FEDF00;
 }
 
 h1, h2 {
   text-align: center;
   margin: 0.5rem 0;
-  font-family:Helvetica;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size:xx-large;
 }
 
@@ -118,7 +118,7 @@ button {
   padding: 5px 8px;
   border: none;
   border-radius: 8px;
-  background: #4dc039;
+  background: #009b3a;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -127,7 +127,7 @@ button {
 }
 
 button:hover {
-  background: #fbff21;
+  background: #FEDF00;
   transition: background 1s, color 0.5s;
   color: #000;
 }
