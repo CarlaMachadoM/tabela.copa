@@ -12,7 +12,8 @@ body {
 h1, h2 {
   text-align: center;
   margin: 0.5rem 0;
-  font-family: 'Courier New', Courier, monospace;
+  font-family:Helvetica;
+  font-size:xx-large;
 }
 
 h1 {
@@ -35,7 +36,7 @@ section > h2 {
 }
 
 .card {
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 12px;
   padding: 10px 12px 8px;
   border: 1px solid #000;
@@ -46,7 +47,7 @@ section > h2 {
 .card h3 {
   color: #002776;
   margin: 0 0 6px;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
 }
 
 .match {
@@ -99,7 +100,7 @@ section > h2 {
 
 .vs {
   font-weight: bold;
-  color: #555;
+  color: #0040ff;
   flex-shrink: 0;
   font-size: 0.8rem;
 }
@@ -127,7 +128,7 @@ button {
 
 button:hover {
   background: #fbff21;
-  transition: background 1s, color 0.3s;
+  transition: background 1s, color 0.5s;
   color: #000;
 }
 
