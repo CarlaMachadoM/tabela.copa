@@ -70,6 +70,12 @@ section > h2 {
   gap: 1px;
 }
 
+/* NOVO: tooltip visual para o asterisco */
+.match-meta span[title] {
+  cursor: help;
+  border-bottom: 1px dotted #3f5df1;
+}
+
 .team-label {
   display: inline-flex;
   align-items: center;
@@ -106,11 +112,19 @@ section > h2 {
   font-size: 0.8rem;
 }
 
-input {
-  width: 32px;
+/* CORRIGIDO: esconder setas de number input e manter aparência consistente */
+input[type="number"] {
+  width: 36px;
   text-align: center;
   padding: 1px 2px;
   font-size: 0.85rem;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button {
@@ -156,6 +170,15 @@ button:hover {
   word-break: break-word;
 }
 
+/* NOVO: mensagem quando nenhum resultado foi registrado */
+.stand-empty {
+  font-size: 0.72rem;
+  color: #888;
+  font-style: italic;
+  font-weight: normal;
+  padding: 2px 0;
+}
+
 .phase-title {
   text-align: center;
   color: white;
@@ -195,4 +218,14 @@ button:hover {
 
 .phase-column button {
   margin-top: 8px;
+}
+
+/* NOVO: legenda global do asterisco no rodapé da seção de grupos */
+.asterisk-legend {
+  text-align: center;
+  font-size: 0.72rem;
+  color: rgba(254, 223, 0, 0.75);
+  font-style: italic;
+  padding: 0 12px 6px;
+  margin-top: -4px;
 }

@@ -232,36 +232,47 @@ function resetToDefault() {
   save();
 }
 
+/* CORRIGIDO: confirmação antes de limpar */
 function clearGroup(group){
+  if (!confirm(`Limpar todos os resultados do Grupo ${group}?`)) return;
   matches[group].forEach(g=>{ delete g.g1; delete g.g2; });
   save(); render();
 }
 
 function clearPhase(phase){
+  const labels = {"32":"32-avos","16":"Oitavas","8":"Quartas","4":"Semifinais","3":"3º Lugar","final":"Final"};
+  if (!confirm(`Limpar resultados de ${labels[phase] || phase}?`)) return;
   if (knockout[phase]) {
     knockout[phase].forEach(g=>{ delete g.g1; delete g.g2; });
   }
   save(); render();
 }
 
+/* CORRIGIDO: validação de entrada — aceita apenas inteiros >= 0 */
+function parseScore(val){
+  const n = parseInt(val, 10);
+  if (isNaN(n) || n < 0) return null;
+  return n;
+}
+
 function update(group,i,side,val){
-  matches[group][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
+  matches[group][i][side===0?"g1":"g2"] = parseScore(val);
   save(); render();
 }
 
 function updateKO(phase,i,side,val){
   if (!knockout[phase] || !knockout[phase][i]) return;
-  knockout[phase][i][side===0?"g1":"g2"]=val===""?null:parseInt(val);
+  knockout[phase][i][side===0?"g1":"g2"] = parseScore(val);
   save(); render();
 }
 
 function calc(group){
   const table={};
   matches[group].forEach(g=>{
-    [g.t1,g.t2].forEach(t=>{ if(!table[t]) table[t]={pts:0,gf:0,ga:0}; });
+    [g.t1,g.t2].forEach(t=>{ if(!table[t]) table[t]={pts:0,gf:0,ga:0,j:0}; });
     if(g.g1!=null && g.g2!=null){
-      table[g.t1].gf+=g.g1; table[g.t1].ga+=g.g2;
-      table[g.t2].gf+=g.g2; table[g.t2].ga+=g.g1;
+      table[g.t1].gf+=g.g1; table[g.t1].ga+=g.g2; table[g.t1].j++;
+      table[g.t2].gf+=g.g2; table[g.t2].ga+=g.g1; table[g.t2].j++;
       if(g.g1>g.g2) table[g.t1].pts+=3;
       else if(g.g2>g.g1) table[g.t2].pts+=3;
       else{ table[g.t1].pts++; table[g.t2].pts++; }
@@ -327,18 +338,33 @@ function buildPhase(name, teams){
   }
 }
 
+/* CORRIGIDO: inputs com type="number", min="0", aria-label */
 function createGroup(name,games){
   const div=document.createElement("div");
   div.className="card";
   let html=`<h3>Grupo ${name}</h3>`;
   games.forEach((g,i)=>{
+    /* CORRIGIDO: asterisco explicado inline via título */
+    const timeDisplay = g.time.includes("*")
+      ? `<span title="Horário do dia seguinte (Brasília)">${g.time}</span>`
+      : g.time;
     html+=`
-    <div class="match-meta">${g.date} · ${g.time} (Brasília) · ${g.city}</div>
+    <div class="match-meta">${g.date} · ${timeDisplay} (Brasília) · ${g.city}</div>
     <div class="match">
       ${teamLabel(g.t1)}
-      <input value="${g.g1??''}" onchange="update('${name}',${i},0,this.value)">
+      <input
+        type="number" min="0" max="99"
+        value="${g.g1!=null?g.g1:''}"
+        aria-label="Gols de ${g.t1} - Jogo ${i+1} do Grupo ${name}"
+        onchange="update('${name}',${i},0,this.value)"
+      >
       <span class="vs">x</span>
-      <input value="${g.g2??''}" onchange="update('${name}',${i},1,this.value)">
+      <input
+        type="number" min="0" max="99"
+        value="${g.g2!=null?g.g2:''}"
+        aria-label="Gols de ${g.t2} - Jogo ${i+1} do Grupo ${name}"
+        onchange="update('${name}',${i},1,this.value)"
+      >
       ${teamLabel(g.t2)}
     </div>`;
   });
@@ -359,14 +385,30 @@ function createPhase(name,title,jogoInicial){
     const info=KO_INFO[name]?.[i];
     const div=document.createElement("div");
     div.className="card";
+
+    /* CORRIGIDO: asterisco com tooltip também no mata-mata */
+    const timeDisplay = info && info.time.includes("*")
+      ? `<span title="Horário do dia seguinte (Brasília)">${info.time}</span>`
+      : (info ? info.time : "");
+
     div.innerHTML=`
       <h3>${title} - Jogo ${jogoInicial+i}</h3>
-      ${info?`<div class="match-meta">${info.date} · ${info.time} (Brasília) · ${info.city}</div>`:""}
+      ${info?`<div class="match-meta">${info.date} · ${timeDisplay} (Brasília) · ${info.city}</div>`:""}
       <div class="match">
         ${teamLabel(g.t1)}
-        <input value="${g.g1??''}" onchange="updateKO('${name}',${i},0,this.value)">
+        <input
+          type="number" min="0" max="99"
+          value="${g.g1!=null?g.g1:''}"
+          aria-label="Gols de ${g.t1} - ${title} Jogo ${jogoInicial+i}"
+          onchange="updateKO('${name}',${i},0,this.value)"
+        >
         <span class="vs">x</span>
-        <input value="${g.g2??''}" onchange="updateKO('${name}',${i},1,this.value)">
+        <input
+          type="number" min="0" max="99"
+          value="${g.g2!=null?g.g2:''}"
+          aria-label="Gols de ${g.t2} - ${title} Jogo ${jogoInicial+i}"
+          onchange="updateKO('${name}',${i},1,this.value)"
+        >
         ${teamLabel(g.t2)}
       </div>`;
     container.appendChild(div);
@@ -429,14 +471,27 @@ function generateKnockout(){
   createPhase("final", "Final",      104);
 }
 
+/* CORRIGIDO: classificação mostra "Nenhum jogo disputado" quando vazio */
+function renderStandings(group, res){
+  const el = document.getElementById("stand-"+group);
+  if (!el) return;
+  const anyPlayed = res.some(t => t.j > 0);
+  if (!anyPlayed) {
+    el.innerHTML = `<div class="stand-empty">Nenhum resultado registrado</div>`;
+    return;
+  }
+  el.innerHTML = res.map((t,i)=>
+    `<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`
+  ).join("");
+}
+
 function render(){
   const app=document.getElementById("app");
   app.innerHTML="";
   Object.entries(matches).forEach(([g,games])=>{
     app.appendChild(createGroup(g,games));
     const res=calc(g);
-    document.getElementById("stand-"+g).innerHTML=
-      res.map((t,i)=>`<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`).join("");
+    renderStandings(g, res);
   });
   generateKnockout();
   save();
