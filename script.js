@@ -232,7 +232,7 @@ function resetToDefault() {
   save();
 }
 
-/* CORRIGIDO: confirmação antes de limpar */
+/* confirmação antes de limpar */
 function clearGroup(group){
   if (!confirm(`Limpar todos os resultados do Grupo ${group}?`)) return;
   matches[group].forEach(g=>{ delete g.g1; delete g.g2; });
@@ -248,7 +248,7 @@ function clearPhase(phase){
   save(); render();
 }
 
-/* CORRIGIDO: validação de entrada — aceita apenas inteiros >= 0 */
+
 function parseScore(val){
   const n = parseInt(val, 10);
   if (isNaN(n) || n < 0) return null;
@@ -338,7 +338,7 @@ function buildPhase(name, teams){
   }
 }
 
-/* CORRIGIDO: inputs com type="number", min="0", aria-label */
+
 function createGroup(name,games){
   const div=document.createElement("div");
   div.className="card";
@@ -386,7 +386,7 @@ function createPhase(name,title,jogoInicial){
     const div=document.createElement("div");
     div.className="card";
 
-    /* CORRIGIDO: asterisco com tooltip também no mata-mata */
+    
     const timeDisplay = info && info.time.includes("*")
       ? `<span title="Horário do dia seguinte (Brasília)">${info.time}</span>`
       : (info ? info.time : "");
@@ -424,37 +424,64 @@ function generateKnockout(){
   const standings={};
   Object.keys(matches).forEach(g=>standings[g]=calc(g));
   const thirds=getBestThirds();
-
-  const phase32Teams=[
-    standings.A?.[1]?.time ?? "---", standings.B?.[1]?.time ?? "---",
-    standings.E?.[0]?.time ?? "---", thirds[0]?.time        ?? "---",
-    standings.F?.[0]?.time ?? "---", standings.C?.[1]?.time ?? "---",
-    standings.C?.[0]?.time ?? "---", standings.F?.[1]?.time ?? "---",
-    standings.I?.[0]?.time ?? "---", thirds[1]?.time        ?? "---",
-    standings.E?.[1]?.time ?? "---", standings.I?.[1]?.time ?? "---",
-    standings.A?.[0]?.time ?? "---", thirds[2]?.time        ?? "---",
-    standings.L?.[0]?.time ?? "---", thirds[3]?.time        ?? "---",
-    standings.D?.[0]?.time ?? "---", thirds[4]?.time        ?? "---",
-    standings.G?.[0]?.time ?? "---", thirds[5]?.time        ?? "---",
-    standings.K?.[1]?.time ?? "---", standings.L?.[1]?.time ?? "---",
-    standings.H?.[0]?.time ?? "---", standings.J?.[1]?.time ?? "---",
-    standings.B?.[0]?.time ?? "---", thirds[6]?.time        ?? "---",
-    standings.J?.[0]?.time ?? "---", standings.H?.[1]?.time ?? "---",
-    standings.K?.[0]?.time ?? "---", thirds[7]?.time        ?? "---",
-    standings.D?.[1]?.time ?? "---", standings.G?.[1]?.time ?? "---"
+  
+  // Mapeamento dos terceiros colocados (índice 0-7)
+  const T = thirds.map(t => t?.time ?? "---");
+  
+  // Função auxiliar para obter classificado
+  const getTeam = (group, pos) => standings[group]?.[pos]?.time ?? "---";
+  
+  // 32-avos de final - Conforme tabela fornecida
+  const phase32Teams = [
+    getTeam("E", 0),                    // 1E
+    T[0],                               // 3ABCDF
+    getTeam("I", 0),                    // 1I
+    T[1],                               // 3CDFGH
+    getTeam("A", 1),                    // 2A
+    getTeam("B", 1),                    // 2B
+    getTeam("F", 0),                    // 1F
+    getTeam("C", 1),                    // 2C
+    getTeam("K", 1),                    // 2K
+    getTeam("L", 1),                    // 2L
+    getTeam("H", 0),                    // 1H
+    getTeam("J", 1),                    // 2J
+    "Estados Unidos",                   // USA (fixo)
+    T[2],                               // 3BEFIJ
+    getTeam("G", 0),                    // 1G
+    T[3],                               // 3AEHIJ
+    getTeam("C", 0),                    // 1C
+    getTeam("F", 1),                    // 2F
+    getTeam("E", 1),                    // 2E
+    getTeam("I", 1),                    // 2I
+    "México",                           // MEX (fixo)
+    T[4],                               // 3CEFHI
+    getTeam("L", 0),                    // 1L
+    T[5],                               // 3EHIJK
+    getTeam("J", 0),                    // 1J
+    getTeam("H", 1),                    // 2H
+    getTeam("D", 1),                    // 2D
+    getTeam("G", 1),                    // 2G
+    getTeam("B", 0),                    // 1B
+    T[6],                               // 3EFGIJ
+    getTeam("K", 0),                    // 1K
+    T[7]                                // 3DEIJL
   ];
 
   buildPhase("32", phase32Teams);
 
+  // Oitavas de final - vencedores dos 32-avos
   const winners32 = knockout["32"].map(getWinner);
   buildPhase("16", winners32);
 
+  // Quartas de final
   const winners16 = knockout["16"].map(getWinner);
   buildPhase("8", winners16);
 
+  // Semifinais
   const winners8 = knockout["8"].map(getWinner);
   buildPhase("4", winners8);
 
+  // 3º Lugar e Final
   const losers4  = knockout["4"].map(getLoser);
   const winners4 = knockout["4"].map(getWinner);
   buildPhase("3",     losers4);
