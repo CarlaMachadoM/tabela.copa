@@ -1,52 +1,52 @@
 const COUNTRY_CODES = {
-  "México":                "mx",
-  "África do Sul":         "za",
-  "Coreia do Sul":         "kr",
-  "República Tcheca":      "cz",
-  "Canadá":                "ca",
-  "Bósnia e Herzegovina":  "ba",
-  "Catar":                 "qa",
-  "Suíça":                 "ch",
-  "Brasil":                "br",
-  "Marrocos":              "ma",
-  "Haiti":                 "ht",
-  "Escócia":               "gb-sct",
-  "Estados Unidos":        "us",
-  "Paraguai":              "py",
-  "Austrália":             "au",
-  "Turquia":               "tr",
-  "Alemanha":              "de",
-  "Curaçao":               "cw",
-  "Costa do Marfim":       "ci",
-  "Equador":               "ec",
-  "Países Baixos":         "nl",
-  "Japão":                 "jp",
-  "Suécia":                "se",
-  "Tunísia":               "tn",
-  "Bélgica":               "be",
-  "Egito":                 "eg",
-  "Irã":                   "ir",
-  "Nova Zelândia":         "nz",
-  "Espanha":               "es",
-  "Cabo Verde":            "cv",
-  "Arábia Saudita":        "sa",
-  "Uruguai":               "uy",
-  "França":                "fr",
-  "Senegal":               "sn",
-  "Iraque":                "iq",
-  "Noruega":               "no",
-  "Argentina":             "ar",
-  "Argélia":               "dz",
-  "Áustria":               "at",
-  "Jordânia":              "jo",
-  "Portugal":              "pt",
-  "RD Congo":              "cd",
-  "Uzbequistão":           "uz",
-  "Colômbia":              "co",
-  "Inglaterra":            "gb-eng",
-  "Croácia":               "hr",
-  "Gana":                  "gh",
-  "Panamá":                "pa",
+  "México": "mx",
+  "África do Sul": "za",
+  "Coreia do Sul": "kr",
+  "República Tcheca": "cz",
+  "Canadá": "ca",
+  "Bósnia e Herzegovina": "ba",
+  "Catar": "qa",
+  "Suíça": "ch",
+  "Brasil": "br",
+  "Marrocos": "ma",
+  "Haiti": "ht",
+  "Escócia": "gb-sct",
+  "Estados Unidos": "us",
+  "Paraguai": "py",
+  "Austrália": "au",
+  "Turquia": "tr",
+  "Alemanha": "de",
+  "Curaçao": "cw",
+  "Costa do Marfim": "ci",
+  "Equador": "ec",
+  "Países Baixos": "nl",
+  "Japão": "jp",
+  "Suécia": "se",
+  "Tunísia": "tn",
+  "Bélgica": "be",
+  "Egito": "eg",
+  "Irã": "ir",
+  "Nova Zelândia": "nz",
+  "Espanha": "es",
+  "Cabo Verde": "cv",
+  "Arábia Saudita": "sa",
+  "Uruguai": "uy",
+  "França": "fr",
+  "Senegal": "sn",
+  "Iraque": "iq",
+  "Noruega": "no",
+  "Argentina": "ar",
+  "Argélia": "dz",
+  "Áustria": "at",
+  "Jordânia": "jo",
+  "Portugal": "pt",
+  "RD Congo": "cd",
+  "Uzbequistão": "uz",
+  "Colômbia": "co",
+  "Inglaterra": "gb-eng",
+  "Croácia": "hr",
+  "Gana": "gh",
+  "Panamá": "pa"
 };
 
 function flag(team) {
@@ -56,148 +56,148 @@ function flag(team) {
 }
 
 const DEFAULT_MATCHES = {
-A:[
-  {t1:"México",          t2:"África do Sul",       date:"Qui 11/06", time:"16h00",  city:"Cidade do México"},
-  {t1:"Coreia do Sul",   t2:"República Tcheca",    date:"Qui 11/06", time:"23h00",  city:"Guadalajara"},
-  {t1:"República Tcheca",t2:"África do Sul",       date:"Qui 18/06", time:"13h00",  city:"Atlanta"},
-  {t1:"México",          t2:"Coreia do Sul",       date:"Qui 18/06", time:"22h00",  city:"Guadalajara"},
-  {t1:"República Tcheca",t2:"México",              date:"Qua 24/06", time:"22h00",  city:"Cidade do México"},
-  {t1:"África do Sul",   t2:"Coreia do Sul",       date:"Qua 24/06", time:"22h00",  city:"Monterrey"}
-],
-B:[
-  {t1:"Canadá",               t2:"Bósnia e Herzegovina", date:"Sex 12/06", time:"16h00", city:"Toronto"},
-  {t1:"Catar",                t2:"Suíça",                date:"Sáb 13/06", time:"16h00", city:"Santa Clara"},
-  {t1:"Suíça",                t2:"Bósnia e Herzegovina", date:"Qui 18/06", time:"16h00", city:"Los Angeles"},
-  {t1:"Canadá",               t2:"Catar",                date:"Qui 18/06", time:"19h00", city:"Vancouver"},
-  {t1:"Suíça",                t2:"Canadá",               date:"Qua 24/06", time:"16h00", city:"Vancouver"},
-  {t1:"Bósnia e Herzegovina", t2:"Catar",                date:"Qua 24/06", time:"16h00", city:"Seattle"}
-],
-C:[
-  {t1:"Brasil",  t2:"Marrocos", date:"Sáb 13/06", time:"19h00", city:"Nova York/NJ"},
-  {t1:"Haiti",   t2:"Escócia",  date:"Sáb 13/06", time:"22h00", city:"Boston"},
-  {t1:"Escócia", t2:"Marrocos", date:"Sex 19/06", time:"19h00", city:"Boston"},
-  {t1:"Brasil",  t2:"Haiti",    date:"Sex 19/06", time:"21h30", city:"Filadélfia"},
-  {t1:"Escócia", t2:"Brasil",   date:"Qua 24/06", time:"19h00", city:"Miami"},
-  {t1:"Marrocos",t2:"Haiti",    date:"Qua 24/06", time:"19h00", city:"Atlanta"}
-],
-D:[
-  {t1:"Estados Unidos",t2:"Paraguai",       date:"Sex 12/06", time:"22h00",  city:"Los Angeles"},
-  {t1:"Austrália",     t2:"Turquia",        date:"Dom 14/06", time:"01h00*", city:"Vancouver"},
-  {t1:"Turquia",       t2:"Paraguai",       date:"Sex 19/06", time:"00h00*", city:"Santa Clara"},
-  {t1:"Estados Unidos",t2:"Austrália",      date:"Sex 19/06", time:"16h00",  city:"Seattle"},
-  {t1:"Turquia",       t2:"Estados Unidos", date:"Qui 25/06", time:"23h00",  city:"Los Angeles"},
-  {t1:"Paraguai",      t2:"Austrália",      date:"Qui 25/06", time:"23h00",  city:"Santa Clara"}
-],
-E:[
-  {t1:"Alemanha",       t2:"Curaçao",        date:"Dom 14/06", time:"14h00", city:"Houston"},
-  {t1:"Costa do Marfim",t2:"Equador",        date:"Dom 14/06", time:"20h00", city:"Filadélfia"},
-  {t1:"Alemanha",       t2:"Costa do Marfim",date:"Sáb 20/06", time:"17h00", city:"Toronto"},
-  {t1:"Equador",        t2:"Curaçao",        date:"Sáb 20/06", time:"21h00", city:"Kansas City"},
-  {t1:"Equador",        t2:"Alemanha",       date:"Qui 25/06", time:"17h00", city:"Nova York/NJ"},
-  {t1:"Curaçao",        t2:"Costa do Marfim",date:"Qui 25/06", time:"17h00", city:"Filadélfia"}
-],
-F:[
-  {t1:"Países Baixos",t2:"Japão",         date:"Dom 14/06", time:"17h00", city:"Dallas"},
-  {t1:"Suécia",       t2:"Tunísia",       date:"Dom 14/06", time:"23h00", city:"Monterrey"},
-  {t1:"Países Baixos",t2:"Suécia",        date:"Sáb 20/06", time:"14h00", city:"Houston"},
-  {t1:"Tunísia",      t2:"Japão",         date:"Sáb 20/06", time:"23h00", city:"Monterrey"},
-  {t1:"Japão",        t2:"Suécia",        date:"Qui 25/06", time:"20h00", city:"Dallas"},
-  {t1:"Tunísia",      t2:"Países Baixos", date:"Qui 25/06", time:"20h00", city:"Kansas City"}
-],
-G:[
-  {t1:"Bélgica",      t2:"Egito",         date:"Seg 15/06", time:"16h00",  city:"Seattle"},
-  {t1:"Irã",          t2:"Nova Zelândia", date:"Seg 15/06", time:"22h00",  city:"Los Angeles"},
-  {t1:"Bélgica",      t2:"Irã",           date:"Dom 21/06", time:"16h00",  city:"Los Angeles"},
-  {t1:"Nova Zelândia",t2:"Egito",         date:"Dom 21/06", time:"22h00",  city:"Vancouver"},
-  {t1:"Egito",        t2:"Irã",           date:"Sex 26/06", time:"00h00*", city:"Seattle"},
-  {t1:"Nova Zelândia",t2:"Bélgica",       date:"Sex 26/06", time:"00h00*", city:"Vancouver"}
-],
-H:[
-  {t1:"Espanha",       t2:"Cabo Verde",    date:"Seg 15/06", time:"13h00", city:"Atlanta"},
-  {t1:"Arábia Saudita",t2:"Uruguai",       date:"Seg 15/06", time:"19h00", city:"Miami"},
-  {t1:"Espanha",       t2:"Arábia Saudita",date:"Dom 21/06", time:"13h00", city:"Atlanta"},
-  {t1:"Uruguai",       t2:"Cabo Verde",    date:"Dom 21/06", time:"19h00", city:"Miami"},
-  {t1:"Cabo Verde",    t2:"Arábia Saudita",date:"Sex 26/06", time:"21h00", city:"Houston"},
-  {t1:"Uruguai",       t2:"Espanha",       date:"Sex 26/06", time:"21h00", city:"Guadalajara"}
-],
-I:[
-  {t1:"França",  t2:"Senegal", date:"Ter 16/06", time:"16h00", city:"Nova York/NJ"},
-  {t1:"Iraque",  t2:"Noruega", date:"Ter 16/06", time:"19h00", city:"Boston"},
-  {t1:"França",  t2:"Iraque",  date:"Seg 22/06", time:"18h00", city:"Filadélfia"},
-  {t1:"Noruega", t2:"Senegal", date:"Seg 22/06", time:"21h00", city:"Nova York/NJ"},
-  {t1:"Noruega", t2:"França",  date:"Sex 26/06", time:"16h00", city:"Boston"},
-  {t1:"Senegal", t2:"Iraque",  date:"Sex 26/06", time:"16h00", city:"Toronto"}
-],
-J:[
-  {t1:"Argentina",t2:"Argélia",  date:"Ter 16/06", time:"22h00",  city:"Kansas City"},
-  {t1:"Áustria",  t2:"Jordânia", date:"Qua 17/06", time:"01h00*", city:"Santa Clara"},
-  {t1:"Argentina",t2:"Áustria",  date:"Seg 22/06", time:"14h00",  city:"Dallas"},
-  {t1:"Jordânia", t2:"Argélia",  date:"Ter 23/06", time:"00h00*", city:"Santa Clara"},
-  {t1:"Argélia",  t2:"Áustria",  date:"Sáb 27/06", time:"23h00",  city:"Kansas City"},
-  {t1:"Jordânia", t2:"Argentina",date:"Sáb 27/06", time:"23h00",  city:"Dallas"}
-],
-K:[
-  {t1:"Portugal",    t2:"RD Congo",    date:"Qua 17/06", time:"14h00", city:"Houston"},
-  {t1:"Uzbequistão", t2:"Colômbia",    date:"Qua 17/06", time:"21h00", city:"Cidade do México"},
-  {t1:"Portugal",    t2:"Uzbequistão", date:"Ter 23/06", time:"14h00", city:"Houston"},
-  {t1:"Colômbia",    t2:"RD Congo",    date:"Ter 23/06", time:"23h00", city:"Guadalajara"},
-  {t1:"Colômbia",    t2:"Portugal",    date:"Sáb 27/06", time:"20h30", city:"Miami"},
-  {t1:"RD Congo",    t2:"Uzbequistão", date:"Sáb 27/06", time:"20h30", city:"Atlanta"}
-],
-L:[
-  {t1:"Inglaterra",t2:"Croácia",   date:"Qua 17/06", time:"17h00", city:"Dallas"},
-  {t1:"Gana",      t2:"Panamá",    date:"Qua 17/06", time:"20h00", city:"Toronto"},
-  {t1:"Inglaterra",t2:"Gana",      date:"Ter 23/06", time:"17h00", city:"Boston"},
-  {t1:"Panamá",    t2:"Croácia",   date:"Ter 23/06", time:"20h00", city:"Toronto"},
-  {t1:"Panamá",    t2:"Inglaterra",date:"Sáb 27/06", time:"18h00", city:"Nova York/NJ"},
-  {t1:"Croácia",   t2:"Gana",      date:"Sáb 27/06", time:"18h00", city:"Filadélfia"}
-]
+  A: [
+    { t1: "México", t2: "África do Sul", date: "Qui 11/06", time: "16h00", city: "Cidade do México" },
+    { t1: "Coreia do Sul", t2: "República Tcheca", date: "Qui 11/06", time: "23h00", city: "Guadalajara" },
+    { t1: "República Tcheca", t2: "África do Sul", date: "Qui 18/06", time: "13h00", city: "Atlanta" },
+    { t1: "México", t2: "Coreia do Sul", date: "Qui 18/06", time: "22h00", city: "Guadalajara" },
+    { t1: "República Tcheca", t2: "México", date: "Qua 24/06", time: "22h00", city: "Cidade do México" },
+    { t1: "África do Sul", t2: "Coreia do Sul", date: "Qua 24/06", time: "22h00", city: "Monterrey" }
+  ],
+  B: [
+    { t1: "Canadá", t2: "Bósnia e Herzegovina", date: "Sex 12/06", time: "16h00", city: "Toronto" },
+    { t1: "Catar", t2: "Suíça", date: "Sáb 13/06", time: "16h00", city: "Santa Clara" },
+    { t1: "Suíça", t2: "Bósnia e Herzegovina", date: "Qui 18/06", time: "16h00", city: "Los Angeles" },
+    { t1: "Canadá", t2: "Catar", date: "Qui 18/06", time: "19h00", city: "Vancouver" },
+    { t1: "Suíça", t2: "Canadá", date: "Qua 24/06", time: "16h00", city: "Vancouver" },
+    { t1: "Bósnia e Herzegovina", t2: "Catar", date: "Qua 24/06", time: "16h00", city: "Seattle" }
+  ],
+  C: [
+    { t1: "Brasil", t2: "Marrocos", date: "Sáb 13/06", time: "19h00", city: "Nova York/NJ" },
+    { t1: "Haiti", t2: "Escócia", date: "Sáb 13/06", time: "22h00", city: "Boston" },
+    { t1: "Escócia", t2: "Marrocos", date: "Sex 19/06", time: "19h00", city: "Boston" },
+    { t1: "Brasil", t2: "Haiti", date: "Sex 19/06", time: "21h30", city: "Filadélfia" },
+    { t1: "Escócia", t2: "Brasil", date: "Qua 24/06", time: "19h00", city: "Miami" },
+    { t1: "Marrocos", t2: "Haiti", date: "Qua 24/06", time: "19h00", city: "Atlanta" }
+  ],
+  D: [
+    { t1: "Estados Unidos", t2: "Paraguai", date: "Sex 12/06", time: "22h00", city: "Los Angeles" },
+    { t1: "Austrália", t2: "Turquia", date: "Dom 14/06", time: "01h00*", city: "Vancouver" },
+    { t1: "Turquia", t2: "Paraguai", date: "Sex 19/06", time: "00h00*", city: "Santa Clara" },
+    { t1: "Estados Unidos", t2: "Austrália", date: "Sex 19/06", time: "16h00", city: "Seattle" },
+    { t1: "Turquia", t2: "Estados Unidos", date: "Qui 25/06", time: "23h00", city: "Los Angeles" },
+    { t1: "Paraguai", t2: "Austrália", date: "Qui 25/06", time: "23h00", city: "Santa Clara" }
+  ],
+  E: [
+    { t1: "Alemanha", t2: "Curaçao", date: "Dom 14/06", time: "14h00", city: "Houston" },
+    { t1: "Costa do Marfim", t2: "Equador", date: "Dom 14/06", time: "20h00", city: "Filadélfia" },
+    { t1: "Alemanha", t2: "Costa do Marfim", date: "Sáb 20/06", time: "17h00", city: "Toronto" },
+    { t1: "Equador", t2: "Curaçao", date: "Sáb 20/06", time: "21h00", city: "Kansas City" },
+    { t1: "Equador", t2: "Alemanha", date: "Qui 25/06", time: "17h00", city: "Nova York/NJ" },
+    { t1: "Curaçao", t2: "Costa do Marfim", date: "Qui 25/06", time: "17h00", city: "Filadélfia" }
+  ],
+  F: [
+    { t1: "Países Baixos", t2: "Japão", date: "Dom 14/06", time: "17h00", city: "Dallas" },
+    { t1: "Suécia", t2: "Tunísia", date: "Dom 14/06", time: "23h00", city: "Monterrey" },
+    { t1: "Países Baixos", t2: "Suécia", date: "Sáb 20/06", time: "14h00", city: "Houston" },
+    { t1: "Tunísia", t2: "Japão", date: "Sáb 20/06", time: "23h00", city: "Monterrey" },
+    { t1: "Japão", t2: "Suécia", date: "Qui 25/06", time: "20h00", city: "Dallas" },
+    { t1: "Tunísia", t2: "Países Baixos", date: "Qui 25/06", time: "20h00", city: "Kansas City" }
+  ],
+  G: [
+    { t1: "Bélgica", t2: "Egito", date: "Seg 15/06", time: "16h00", city: "Seattle" },
+    { t1: "Irã", t2: "Nova Zelândia", date: "Seg 15/06", time: "22h00", city: "Los Angeles" },
+    { t1: "Bélgica", t2: "Irã", date: "Dom 21/06", time: "16h00", city: "Los Angeles" },
+    { t1: "Nova Zelândia", t2: "Egito", date: "Dom 21/06", time: "22h00", city: "Vancouver" },
+    { t1: "Egito", t2: "Irã", date: "Sex 26/06", time: "00h00*", city: "Seattle" },
+    { t1: "Nova Zelândia", t2: "Bélgica", date: "Sex 26/06", time: "00h00*", city: "Vancouver" }
+  ],
+  H: [
+    { t1: "Espanha", t2: "Cabo Verde", date: "Seg 15/06", time: "13h00", city: "Atlanta" },
+    { t1: "Arábia Saudita", t2: "Uruguai", date: "Seg 15/06", time: "19h00", city: "Miami" },
+    { t1: "Espanha", t2: "Arábia Saudita", date: "Dom 21/06", time: "13h00", city: "Atlanta" },
+    { t1: "Uruguai", t2: "Cabo Verde", date: "Dom 21/06", time: "19h00", city: "Miami" },
+    { t1: "Cabo Verde", t2: "Arábia Saudita", date: "Sex 26/06", time: "21h00", city: "Houston" },
+    { t1: "Uruguai", t2: "Espanha", date: "Sex 26/06", time: "21h00", city: "Guadalajara" }
+  ],
+  I: [
+    { t1: "França", t2: "Senegal", date: "Ter 16/06", time: "16h00", city: "Nova York/NJ" },
+    { t1: "Iraque", t2: "Noruega", date: "Ter 16/06", time: "19h00", city: "Boston" },
+    { t1: "França", t2: "Iraque", date: "Seg 22/06", time: "18h00", city: "Filadélfia" },
+    { t1: "Noruega", t2: "Senegal", date: "Seg 22/06", time: "21h00", city: "Nova York/NJ" },
+    { t1: "Noruega", t2: "França", date: "Sex 26/06", time: "16h00", city: "Boston" },
+    { t1: "Senegal", t2: "Iraque", date: "Sex 26/06", time: "16h00", city: "Toronto" }
+  ],
+  J: [
+    { t1: "Argentina", t2: "Argélia", date: "Ter 16/06", time: "22h00", city: "Kansas City" },
+    { t1: "Áustria", t2: "Jordânia", date: "Qua 17/06", time: "01h00*", city: "Santa Clara" },
+    { t1: "Argentina", t2: "Áustria", date: "Seg 22/06", time: "14h00", city: "Dallas" },
+    { t1: "Jordânia", t2: "Argélia", date: "Ter 23/06", time: "00h00*", city: "Santa Clara" },
+    { t1: "Argélia", t2: "Áustria", date: "Sáb 27/06", time: "23h00", city: "Kansas City" },
+    { t1: "Jordânia", t2: "Argentina", date: "Sáb 27/06", time: "23h00", city: "Dallas" }
+  ],
+  K: [
+    { t1: "Portugal", t2: "RD Congo", date: "Qua 17/06", time: "14h00", city: "Houston" },
+    { t1: "Uzbequistão", t2: "Colômbia", date: "Qua 17/06", time: "21h00", city: "Cidade do México" },
+    { t1: "Portugal", t2: "Uzbequistão", date: "Ter 23/06", time: "14h00", city: "Houston" },
+    { t1: "Colômbia", t2: "RD Congo", date: "Ter 23/06", time: "23h00", city: "Guadalajara" },
+    { t1: "Colômbia", t2: "Portugal", date: "Sáb 27/06", time: "20h30", city: "Miami" },
+    { t1: "RD Congo", t2: "Uzbequistão", date: "Sáb 27/06", time: "20h30", city: "Atlanta" }
+  ],
+  L: [
+    { t1: "Inglaterra", t2: "Croácia", date: "Qua 17/06", time: "17h00", city: "Dallas" },
+    { t1: "Gana", t2: "Panamá", date: "Qua 17/06", time: "20h00", city: "Toronto" },
+    { t1: "Inglaterra", t2: "Gana", date: "Ter 23/06", time: "17h00", city: "Boston" },
+    { t1: "Panamá", t2: "Croácia", date: "Ter 23/06", time: "20h00", city: "Toronto" },
+    { t1: "Panamá", t2: "Inglaterra", date: "Sáb 27/06", time: "18h00", city: "Nova York/NJ" },
+    { t1: "Croácia", t2: "Gana", date: "Sáb 27/06", time: "18h00", city: "Filadélfia" }
+  ]
 };
 
 const KO_INFO = {
-  "32":[
-    {date:"Dom 28/06", time:"22h00", city:"Los Angeles"},
-    {date:"Seg 29/06", time:"16h00", city:"Boston"},
-    {date:"Seg 29/06", time:"16h00", city:"Monterrey"},
-    {date:"Seg 29/06", time:"19h00", city:"Houston"},
-    {date:"Ter 30/06", time:"17h00", city:"Nova York/NJ"},
-    {date:"Ter 30/06", time:"19h00", city:"Dallas"},
-    {date:"Ter 30/06", time:"22h00", city:"Cidade do México"},
-    {date:"Qua 01/07", time:"13h00", city:"Atlanta"},
-    {date:"Qua 01/07", time:"16h00", city:"Santa Clara"},
-    {date:"Qua 01/07", time:"16h00", city:"Seattle"},
-    {date:"Qui 02/07", time:"16h00", city:"Toronto"},
-    {date:"Qui 02/07", time:"17h00", city:"Los Angeles"},
-    {date:"Qui 02/07", time:"19h00", city:"Vancouver"},
-    {date:"Sex 03/07", time:"17h00", city:"Miami"},
-    {date:"Sex 03/07", time:"19h00", city:"Kansas City"},
-    {date:"Sex 03/07", time:"20h00", city:"Dallas"}
+  "32": [
+    { date: "Dom 28/06", time: "22h00", city: "Los Angeles" },
+    { date: "Seg 29/06", time: "16h00", city: "Boston" },
+    { date: "Seg 29/06", time: "16h00", city: "Monterrey" },
+    { date: "Seg 29/06", time: "19h00", city: "Houston" },
+    { date: "Ter 30/06", time: "17h00", city: "Nova York/NJ" },
+    { date: "Ter 30/06", time: "19h00", city: "Dallas" },
+    { date: "Ter 30/06", time: "22h00", city: "Cidade do México" },
+    { date: "Qua 01/07", time: "13h00", city: "Atlanta" },
+    { date: "Qua 01/07", time: "16h00", city: "Santa Clara" },
+    { date: "Qua 01/07", time: "16h00", city: "Seattle" },
+    { date: "Qui 02/07", time: "16h00", city: "Toronto" },
+    { date: "Qui 02/07", time: "17h00", city: "Los Angeles" },
+    { date: "Qui 02/07", time: "19h00", city: "Vancouver" },
+    { date: "Sex 03/07", time: "17h00", city: "Miami" },
+    { date: "Sex 03/07", time: "19h00", city: "Kansas City" },
+    { date: "Sex 03/07", time: "20h00", city: "Dallas" }
   ],
-  "16":[
-    {date:"Sáb 04/07", time:"17h00", city:"Filadélfia"},
-    {date:"Sáb 04/07", time:"20h00", city:"Houston"},
-    {date:"Dom 05/07", time:"17h00", city:"Nova York/NJ"},
-    {date:"Dom 05/07", time:"19h00", city:"Cidade do México"},
-    {date:"Seg 06/07", time:"17h00", city:"Dallas"},
-    {date:"Seg 06/07", time:"20h00", city:"Seattle"},
-    {date:"Ter 07/07", time:"17h00", city:"Atlanta"},
-    {date:"Ter 07/07", time:"19h00", city:"Vancouver"}
+  "16": [
+    { date: "Sáb 04/07", time: "17h00", city: "Filadélfia" },
+    { date: "Sáb 04/07", time: "20h00", city: "Houston" },
+    { date: "Dom 05/07", time: "17h00", city: "Nova York/NJ" },
+    { date: "Dom 05/07", time: "19h00", city: "Cidade do México" },
+    { date: "Seg 06/07", time: "17h00", city: "Dallas" },
+    { date: "Seg 06/07", time: "20h00", city: "Seattle" },
+    { date: "Ter 07/07", time: "17h00", city: "Atlanta" },
+    { date: "Ter 07/07", time: "19h00", city: "Vancouver" }
   ],
-  "8":[
-    {date:"Qui 09/07", time:"17h00", city:"Boston"},
-    {date:"Sex 10/07", time:"17h00", city:"Los Angeles"},
-    {date:"Sáb 12/07", time:"17h00", city:"Miami"},
-    {date:"Sáb 12/07", time:"21h00", city:"Kansas City"}
+  "8": [
+    { date: "Qui 09/07", time: "17h00", city: "Boston" },
+    { date: "Sex 10/07", time: "17h00", city: "Los Angeles" },
+    { date: "Sáb 12/07", time: "17h00", city: "Miami" },
+    { date: "Sáb 12/07", time: "21h00", city: "Kansas City" }
   ],
-  "4":[
-    {date:"Ter 14/07", time:"17h00", city:"Dallas"},
-    {date:"Qua 15/07", time:"17h00", city:"Atlanta"}
+  "4": [
+    { date: "Ter 14/07", time: "17h00", city: "Dallas" },
+    { date: "Qua 15/07", time: "17h00", city: "Atlanta" }
   ],
-  "3":[
-    {date:"Sáb 18/07", time:"17h00", city:"Miami"}
+  "3": [
+    { date: "Sáb 18/07", time: "17h00", city: "Miami" }
   ],
-  "final":[
-    {date:"Dom 19/07", time:"17h00", city:"Nova York/NJ"}
+  "final": [
+    { date: "Dom 19/07", time: "17h00", city: "Nova York/NJ" }
   ]
 };
 
@@ -206,12 +206,12 @@ let knockout = {};
 
 const DATA_VERSION = "1.0.0";
 
-function save(){
+function save() {
   const saveData = { version: DATA_VERSION, matches, knockout };
   localStorage.setItem("appData", JSON.stringify(saveData));
 }
 
-function load(){
+function load() {
   const savedData = localStorage.getItem("appData");
   if (savedData) {
     const parsedData = JSON.parse(savedData);
@@ -232,104 +232,125 @@ function resetToDefault() {
   save();
 }
 
-/* confirmação antes de limpar */
-function clearGroup(group){
+function clearGroup(group) {
   if (!confirm(`Limpar todos os resultados do Grupo ${group}?`)) return;
-  matches[group].forEach(g=>{ delete g.g1; delete g.g2; });
-  save(); render();
+  matches[group].forEach(g => {
+    delete g.g1;
+    delete g.g2;
+  });
+  save();
+  render();
 }
 
-function clearPhase(phase){
-  const labels = {"32":"32-avos","16":"Oitavas","8":"Quartas","4":"Semifinais","3":"3º Lugar","final":"Final"};
+function clearPhase(phase) {
+  const labels = { "32": "32-avos", "16": "Oitavas", "8": "Quartas", "4": "Semifinais", "3": "3º Lugar", "final": "Final" };
   if (!confirm(`Limpar resultados de ${labels[phase] || phase}?`)) return;
   if (knockout[phase]) {
-    knockout[phase].forEach(g=>{ delete g.g1; delete g.g2; });
+    knockout[phase].forEach(g => {
+      delete g.g1;
+      delete g.g2;
+    });
   }
-  save(); render();
+  save();
+  render();
 }
 
-
-function parseScore(val){
+function parseScore(val) {
   const n = parseInt(val, 10);
   if (isNaN(n) || n < 0) return null;
   return n;
 }
 
-function update(group,i,side,val){
-  matches[group][i][side===0?"g1":"g2"] = parseScore(val);
-  save(); render();
+function update(group, i, side, val) {
+  matches[group][i][side === 0 ? "g1" : "g2"] = parseScore(val);
+  save();
+  render();
 }
 
-function updateKO(phase,i,side,val){
+function updateKO(phase, i, side, val) {
   if (!knockout[phase] || !knockout[phase][i]) return;
-  knockout[phase][i][side===0?"g1":"g2"] = parseScore(val);
-  save(); render();
+  knockout[phase][i][side === 0 ? "g1" : "g2"] = parseScore(val);
+  save();
+  render();
 }
 
-function calc(group){
-  const table={};
-  matches[group].forEach(g=>{
-    [g.t1,g.t2].forEach(t=>{ if(!table[t]) table[t]={pts:0,gf:0,ga:0,j:0}; });
-    if(g.g1!=null && g.g2!=null){
-      table[g.t1].gf+=g.g1; table[g.t1].ga+=g.g2; table[g.t1].j++;
-      table[g.t2].gf+=g.g2; table[g.t2].ga+=g.g1; table[g.t2].j++;
-      if(g.g1>g.g2) table[g.t1].pts+=3;
-      else if(g.g2>g.g1) table[g.t2].pts+=3;
-      else{ table[g.t1].pts++; table[g.t2].pts++; }
+function calc(group) {
+  const table = {};
+  matches[group].forEach(g => {
+    [g.t1, g.t2].forEach(t => {
+      if (!table[t]) table[t] = { pts: 0, gf: 0, ga: 0, j: 0 };
+    });
+
+    if (g.g1 != null && g.g2 != null) {
+      table[g.t1].gf += g.g1;
+      table[g.t1].ga += g.g2;
+      table[g.t1].j++;
+      table[g.t2].gf += g.g2;
+      table[g.t2].ga += g.g1;
+      table[g.t2].j++;
+
+      if (g.g1 > g.g2) table[g.t1].pts += 3;
+      else if (g.g2 > g.g1) table[g.t2].pts += 3;
+      else {
+        table[g.t1].pts++;
+        table[g.t2].pts++;
+      }
     }
   });
+
   return Object.entries(table)
-    .map(([t,v])=>({...v,time:t,sg:v.gf-v.ga}))
-    .sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf);
+    .map(([t, v]) => ({ ...v, time: t, sg: v.gf - v.ga }))
+    .sort((a, b) => b.pts - a.pts || b.sg - a.sg || b.gf - a.gf);
 }
 
-function getWinner(game){
-  if(!game || game.g1==null || game.g2==null) return "---";
-  if(game.g1===game.g2) return "---";
-  return game.g1>game.g2 ? game.t1 : game.t2;
+function getWinner(game) {
+  if (!game || game.g1 == null || game.g2 == null) return "---";
+  if (game.g1 === game.g2) return "---";
+  return game.g1 > game.g2 ? game.t1 : game.t2;
 }
 
-function getLoser(game){
-  if(!game || game.g1==null || game.g2==null) return "---";
-  if(game.g1===game.g2) return "---";
-  return game.g1<game.g2 ? game.t1 : game.t2;
+function getLoser(game) {
+  if (!game || game.g1 == null || game.g2 == null) return "---";
+  if (game.g1 === game.g2) return "---";
+  return game.g1 < game.g2 ? game.t1 : game.t2;
 }
 
-function getBestThirds(){
-  let thirds=[];
-  Object.keys(matches).forEach(g=>{
-    const res=calc(g);
-    if(res[2]) thirds.push(res[2]);
+function getBestThirds() {
+  let thirds = [];
+  Object.keys(matches).forEach(g => {
+    const res = calc(g);
+    if (res[2]) thirds.push(res[2]);
   });
+
   return thirds
-    .sort((a,b)=>b.pts-a.pts||b.sg-a.sg||b.gf-a.gf)
-    .slice(0,8);
+    .sort((a, b) => b.pts - a.pts || b.sg - a.sg || b.gf - a.gf)
+    .slice(0, 8);
 }
 
-function teamLabel(name){
-  const display = (!name || name==="---") ? "A definir" : name;
+function teamLabel(name) {
+  const display = (!name || name === "---") ? "A definir" : name;
   return `<span class="team-label">${flag(name)}<span class="team-name">${display}</span></span>`;
 }
 
-function buildPhase(name, teams){
-  if(!knockout[name]){
+function buildPhase(name, teams) {
+  if (!knockout[name]) {
     knockout[name] = [];
-    for(let i=0; i<teams.length; i+=2){
+    for (let i = 0; i < teams.length; i += 2) {
       knockout[name].push({
-        t1: teams[i]   ?? "---",
-        t2: teams[i+1] ?? "---"
+        t1: teams[i] ?? "---",
+        t2: teams[i + 1] ?? "---"
       });
     }
   } else {
-    for(let i=0; i<knockout[name].length; i++){
-      const novoT1 = teams[i*2]   ?? "---";
-      const novoT2 = teams[i*2+1] ?? "---";
-      if(knockout[name][i].t1 !== novoT1){
+    for (let i = 0; i < knockout[name].length; i++) {
+      const novoT1 = teams[i * 2] ?? "---";
+      const novoT2 = teams[i * 2 + 1] ?? "---";
+      if (knockout[name][i].t1 !== novoT1) {
         knockout[name][i].t1 = novoT1;
         delete knockout[name][i].g1;
         delete knockout[name][i].g2;
       }
-      if(knockout[name][i].t2 !== novoT2){
+      if (knockout[name][i].t2 !== novoT2) {
         knockout[name][i].t2 = novoT2;
         delete knockout[name][i].g1;
         delete knockout[name][i].g2;
@@ -338,191 +359,142 @@ function buildPhase(name, teams){
   }
 }
 
+function createGroup(name, games) {
+  const div = document.createElement("div");
+  div.className = "card";
+  let html = `<h3>Grupo ${name}</h3>`;
 
-function createGroup(name,games){
-  const div=document.createElement("div");
-  div.className="card";
-  let html=`<h3>Grupo ${name}</h3>`;
-  games.forEach((g,i)=>{
-    /* CORRIGIDO: asterisco explicado inline via título */
-    const timeDisplay = g.time.includes("*")
-      ? `<span title="Horário do dia seguinte (Brasília)">${g.time}</span>`
-      : g.time;
-    html+=`
-    <div class="match-meta">${g.date} · ${timeDisplay} (Brasília) · ${g.city}</div>
-    <div class="match">
-      ${teamLabel(g.t1)}
-      <input
-        type="number" min="0" max="99"
-        value="${g.g1!=null?g.g1:''}"
-        aria-label="Gols de ${g.t1} - Jogo ${i+1} do Grupo ${name}"
-        onchange="update('${name}',${i},0,this.value)"
-      >
-      <span class="vs">x</span>
-      <input
-        type="number" min="0" max="99"
-        value="${g.g2!=null?g.g2:''}"
-        aria-label="Gols de ${g.t2} - Jogo ${i+1} do Grupo ${name}"
-        onchange="update('${name}',${i},1,this.value)"
-      >
-      ${teamLabel(g.t2)}
-    </div>`;
+  games.forEach((g, i) => {
+    const timeDisplay = g.time.includes("*") ? `<span title="Horário do dia seguinte (Brasília)">${g.time}</span>` : g.time;
+    html += `
+      <div class="match-meta">${g.date} · ${timeDisplay} (Brasília) · ${g.city}</div>
+      <div class="match">
+        ${teamLabel(g.t1)}
+        <input type="number" min="0" max="99" value="${g.g1 != null ? g.g1 : ''}" aria-label="Gols de ${g.t1} - Jogo ${i+1} do Grupo ${name}" onchange="update('${name}',${i},0,this.value)">
+        <span class="vs">x</span>
+        <input type="number" min="0" max="99" value="${g.g2 != null ? g.g2 : ''}" aria-label="Gols de ${g.t2} - Jogo ${i+1} do Grupo ${name}" onchange="update('${name}',${i},1,this.value)">
+        ${teamLabel(g.t2)}
+      </div>
+    `;
   });
-  html+=`<button onclick="clearGroup('${name}')">Limpar</button>
+
+  html += `<button onclick="clearGroup('${name}')">Limpar</button>
   <div class="standings" id="stand-${name}"></div>`;
-  div.innerHTML=html;
+  div.innerHTML = html;
   return div;
 }
 
-function createPhase(name,title,jogoInicial){
-  const container=document.getElementById("phase32");
-
-  const h=document.createElement("h2");
-  h.innerText=title;
-  container.appendChild(h);
-
-  knockout[name].forEach((g,i)=>{
-    const info=KO_INFO[name]?.[i];
-    const div=document.createElement("div");
-    div.className="card";
-
-    
-    const timeDisplay = info && info.time.includes("*")
-      ? `<span title="Horário do dia seguinte (Brasília)">${info.time}</span>`
-      : (info ? info.time : "");
-
-    div.innerHTML=`
-      <h3>${title} - Jogo ${jogoInicial+i}</h3>
-      ${info?`<div class="match-meta">${info.date} · ${timeDisplay} (Brasília) · ${info.city}</div>`:""}
-      <div class="match">
-        ${teamLabel(g.t1)}
-        <input
-          type="number" min="0" max="99"
-          value="${g.g1!=null?g.g1:''}"
-          aria-label="Gols de ${g.t1} - ${title} Jogo ${jogoInicial+i}"
-          onchange="updateKO('${name}',${i},0,this.value)"
-        >
-        <span class="vs">x</span>
-        <input
-          type="number" min="0" max="99"
-          value="${g.g2!=null?g.g2:''}"
-          aria-label="Gols de ${g.t2} - ${title} Jogo ${jogoInicial+i}"
-          onchange="updateKO('${name}',${i},1,this.value)"
-        >
-        ${teamLabel(g.t2)}
-      </div>`;
-    container.appendChild(div);
-  });
-
-  const btn=document.createElement("button");
-  btn.innerText="Limpar";
-  btn.onclick=()=>clearPhase(name);
-  container.appendChild(btn);
-}
-
-function generateKnockout(){
-  const standings={};
-  Object.keys(matches).forEach(g=>standings[g]=calc(g));
-  const thirds=getBestThirds();
-  
-  // Mapeamento dos terceiros colocados (índice 0-7)
-  const T = thirds.map(t => t?.time ?? "---");
-  
-  // Função auxiliar para obter classificado
-  const getTeam = (group, pos) => standings[group]?.[pos]?.time ?? "---";
-  
-  // 32-avos de final - Conforme tabela fornecida
-  const phase32Teams = [
-    getTeam("E", 0),                    // 1E
-    T[0],                               // 3ABCDF
-    getTeam("I", 0),                    // 1I
-    T[1],                               // 3CDFGH
-    getTeam("A", 1),                    // 2A
-    getTeam("B", 1),                    // 2B
-    getTeam("F", 0),                    // 1F
-    getTeam("C", 1),                    // 2C
-    getTeam("K", 1),                    // 2K
-    getTeam("L", 1),                    // 2L
-    getTeam("H", 0),                    // 1H
-    getTeam("J", 1),                    // 2J
-    "Estados Unidos",                   // USA (fixo)
-    T[2],                               // 3BEFIJ
-    getTeam("G", 0),                    // 1G
-    T[3],                               // 3AEHIJ
-    getTeam("C", 0),                    // 1C
-    getTeam("F", 1),                    // 2F
-    getTeam("E", 1),                    // 2E
-    getTeam("I", 1),                    // 2I
-    "México",                           // MEX (fixo)
-    T[4],                               // 3CEFHI
-    getTeam("L", 0),                    // 1L
-    T[5],                               // 3EHIJK
-    getTeam("J", 0),                    // 1J
-    getTeam("H", 1),                    // 2H
-    getTeam("D", 1),                    // 2D
-    getTeam("G", 1),                    // 2G
-    getTeam("B", 0),                    // 1B
-    T[6],                               // 3EFGIJ
-    getTeam("K", 0),                    // 1K
-    T[7]                                // 3DEIJL
-  ];
-
-  buildPhase("32", phase32Teams);
-
-  // Oitavas de final - vencedores dos 32-avos
-  const winners32 = knockout["32"].map(getWinner);
-  buildPhase("16", winners32);
-
-  // Quartas de final
-  const winners16 = knockout["16"].map(getWinner);
-  buildPhase("8", winners16);
-
-  // Semifinais
-  const winners8 = knockout["8"].map(getWinner);
-  buildPhase("4", winners8);
-
-  // 3º Lugar e Final
-  const losers4  = knockout["4"].map(getLoser);
-  const winners4 = knockout["4"].map(getWinner);
-  buildPhase("3",     losers4);
-  buildPhase("final", winners4);
-
-  const div=document.getElementById("phase32");
-  div.innerHTML="";
-
-  createPhase("32",    "32-avos",    73);
-  createPhase("16",    "Oitavas",    89);
-  createPhase("8",     "Quartas",    97);
-  createPhase("4",     "Semifinais", 101);
-  createPhase("3",     "3º Lugar",   103);
-  createPhase("final", "Final",      104);
-}
-
-/* CORRIGIDO: classificação mostra "Nenhum jogo disputado" quando vazio */
-function renderStandings(group, res){
-  const el = document.getElementById("stand-"+group);
+function renderStandings(group, res) {
+  const el = document.getElementById("stand-" + group);
   if (!el) return;
   const anyPlayed = res.some(t => t.j > 0);
   if (!anyPlayed) {
     el.innerHTML = `<div class="stand-empty">Nenhum resultado registrado</div>`;
     return;
   }
-  el.innerHTML = res.map((t,i)=>
-    `<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg>=0?"+":""}${t.sg} · ${t.gf} gols</div>`
+  el.innerHTML = res.map((t, i) =>
+    `<div class="stand-row">${i+1}º ${flag(t.time)} <strong>${t.time}</strong> — ${t.pts} pts · SG ${t.sg >= 0 ? "+" : ""}${t.sg} · ${t.gf} gols</div>`
   ).join("");
 }
 
-function render(){
-  const app=document.getElementById("app");
-  app.innerHTML="";
-  Object.entries(matches).forEach(([g,games])=>{
-    app.appendChild(createGroup(g,games));
-    const res=calc(g);
+function createPhase(name, title, jogoInicial) {
+  const container = document.getElementById("phase32");
+
+  const h = document.createElement("h2");
+  h.innerText = title;
+  container.appendChild(h);
+
+  knockout[name].forEach((g, i) => {
+    const info = KO_INFO[name]?.[i];
+    const div = document.createElement("div");
+    div.className = "card";
+
+    const timeDisplay = info && info.time.includes("*") ? `<span title="Horário do dia seguinte (Brasília)">${info.time}</span>` : (info ? info.time : "");
+
+    div.innerHTML = `
+      <h3>${title} - Jogo ${jogoInicial + i}</h3>
+      ${info ? `<div class="match-meta">${info.date} · ${timeDisplay} (Brasília) · ${info.city}</div>` : ""}
+      <div class="match">
+        ${teamLabel(g.t1)}
+        <input type="number" min="0" max="99" value="${g.g1 != null ? g.g1 : ''}" aria-label="Gols de ${g.t1} - ${title} Jogo ${jogoInicial+i}" onchange="updateKO('${name}',${i},0,this.value)">
+        <span class="vs">x</span>
+        <input type="number" min="0" max="99" value="${g.g2 != null ? g.g2 : ''}" aria-label="Gols de ${g.t2} - ${title} Jogo ${jogoInicial+i}" onchange="updateKO('${name}',${i},1,this.value)">
+        ${teamLabel(g.t2)}
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  const btn = document.createElement("button");
+  btn.innerText = "Limpar";
+  btn.onclick = () => clearPhase(name);
+  container.appendChild(btn);
+}
+
+function generateKnockout() {
+  const standings = {};
+  Object.keys(matches).forEach(g => standings[g] = calc(g));
+  const thirds = getBestThirds();
+
+  const T = thirds.map(t => t?.time ?? "---");
+
+  const getTeam = (group, pos) => standings[group]?.[pos]?.time ?? "---";
+
+  const phase32Teams = [
+    getTeam("E", 0), T[0], getTeam("I", 0), T[1],
+    getTeam("A", 1), getTeam("B", 1), getTeam("F", 0), getTeam("C", 1),
+    getTeam("K", 1), getTeam("L", 1), getTeam("H", 0), getTeam("J", 1),
+    "Estados Unidos", T[2], getTeam("G", 0), T[3],
+    getTeam("C", 0), getTeam("F", 1), getTeam("E", 1), getTeam("I", 1),
+    "México", T[4], getTeam("L", 0), T[5],
+    getTeam("J", 0), getTeam("H", 1), getTeam("D", 1), getTeam("G", 1),
+    getTeam("B", 0), T[6], getTeam("K", 0), T[7]
+  ];
+
+  buildPhase("32", phase32Teams);
+
+  const winners32 = knockout["32"].map(getWinner);
+  buildPhase("16", winners32);
+
+  const winners16 = knockout["16"].map(getWinner);
+  buildPhase("8", winners16);
+
+  const winners8 = knockout["8"].map(getWinner);
+  buildPhase("4", winners8);
+
+  const losers4 = knockout["4"].map(getLoser);
+  const winners4 = knockout["4"].map(getWinner);
+  buildPhase("3", losers4);
+  buildPhase("final", winners4);
+
+  const div = document.getElementById("phase32");
+  div.innerHTML = "";
+
+  createPhase("32", "32-avos", 73);
+  createPhase("16", "Oitavas", 89);
+  createPhase("8", "Quartas", 97);
+  createPhase("4", "Semifinais", 101);
+  createPhase("3", "3º Lugar", 103);
+  createPhase("final", "Final", 104);
+}
+
+function render() {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+
+  Object.entries(matches).forEach(([g, games]) => {
+    app.appendChild(createGroup(g, games));
+    const res = calc(g);
     renderStandings(g, res);
   });
+
   generateKnockout();
   save();
 }
 
-function init(){ load(); render(); }
+function init() {
+  load();
+  render();
+}
+
 init();
