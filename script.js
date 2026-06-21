@@ -204,7 +204,7 @@ const KO_INFO = {
 let matches = {};
 let knockout = {};
 
-const DATA_VERSION = "1.0.1";
+const DATA_VERSION = "1.0.2";
 
 function save() {
   const saveData = { version: DATA_VERSION, matches, knockout };
@@ -492,15 +492,9 @@ function render() {
   save();
 }
 
-function autoUpdate() {
-  render();
-  setTimeout(autoUpdate, 1000);
-}
-
 function init() {
   load();
   render();
-  autoUpdate();
 }
 
 init();
