@@ -61,8 +61,8 @@ const DEFAULT_MATCHES = {
     { t1: "Coreia do Sul", t2: "República Tcheca", date: "Qui 11/06", time: "23h00", city: "Guadalajara" },
     { t1: "República Tcheca", t2: "África do Sul", date: "Qui 18/06", time: "13h00", city: "Atlanta" },
     { t1: "México", t2: "Coreia do Sul", date: "Qui 18/06", time: "22h00", city: "Guadalajara" },
-    { t1: "República Tcheca", t2: "México", date: "Qua 24/06", time: "22h00", city: "Cidade do México" },
-    { t1: "África do Sul", t2: "Coreia do Sul", date: "Qua 24/06", time: "22h00", city: "Monterrey" }
+    { t1: "África do Sul", t2: "Coreia do Sul", date: "Qua 24/06", time: "22h00", city: "Monterrey" },
+    { t1: "República Tcheca", t2: "México", date: "Qua 24/06", time: "22h00", city: "Cidade do México" }
   ],
   B: [
     { t1: "Canadá", t2: "Bósnia e Herzegovina", date: "Sex 12/06", time: "16h00", city: "Toronto" },
@@ -77,13 +77,13 @@ const DEFAULT_MATCHES = {
     { t1: "Haiti", t2: "Escócia", date: "Sáb 13/06", time: "22h00", city: "Boston" },
     { t1: "Escócia", t2: "Marrocos", date: "Sex 19/06", time: "19h00", city: "Boston" },
     { t1: "Brasil", t2: "Haiti", date: "Sex 19/06", time: "21h30", city: "Filadélfia" },
-    { t1: "Escócia", t2: "Brasil", date: "Qua 24/06", time: "19h00", city: "Miami" },
-    { t1: "Marrocos", t2: "Haiti", date: "Qua 24/06", time: "19h00", city: "Atlanta" }
+    { t1: "Marrocos", t2: "Haiti", date: "Qua 24/06", time: "19h00", city: "Atlanta" },
+    { t1: "Escócia", t2: "Brasil", date: "Qua 24/06", time: "19h00", city: "Miami" }
   ],
   D: [
     { t1: "Estados Unidos", t2: "Paraguai", date: "Sex 12/06", time: "22h00", city: "Los Angeles" },
     { t1: "Austrália", t2: "Turquia", date: "Dom 14/06", time: "01h00*", city: "Vancouver" },
-    { t1: "Turquia", t2: "Paraguai", date: "Sex 19/06", time: "00h00*", city: "Santa Clara" },
+    { t1: "Turquia", t2: "Paraguai", date: "Sex 19/06", time: "01h00*", city: "Santa Clara" },
     { t1: "Estados Unidos", t2: "Austrália", date: "Sex 19/06", time: "16h00", city: "Seattle" },
     { t1: "Turquia", t2: "Estados Unidos", date: "Qui 25/06", time: "23h00", city: "Los Angeles" },
     { t1: "Paraguai", t2: "Austrália", date: "Qui 25/06", time: "23h00", city: "Santa Clara" }
@@ -100,9 +100,9 @@ const DEFAULT_MATCHES = {
     { t1: "Países Baixos", t2: "Japão", date: "Dom 14/06", time: "17h00", city: "Dallas" },
     { t1: "Suécia", t2: "Tunísia", date: "Dom 14/06", time: "23h00", city: "Monterrey" },
     { t1: "Países Baixos", t2: "Suécia", date: "Sáb 20/06", time: "14h00", city: "Houston" },
-    { t1: "Tunísia", t2: "Japão", date: "Sáb 20/06", time: "23h00", city: "Monterrey" },
-    { t1: "Japão", t2: "Suécia", date: "Qui 25/06", time: "20h00", city: "Dallas" },
-    { t1: "Tunísia", t2: "Países Baixos", date: "Qui 25/06", time: "20h00", city: "Kansas City" }
+    { t1: "Tunísia", t2: "Japão", date: "Dom 21/06", time: "01h00*", city: "Monterrey" },
+    { t1: "Tunísia", t2: "Países Baixos", date: "Qui 25/06", time: "20h00", city: "Kansas City" },
+    { t1: "Japão", t2: "Suécia", date: "Qui 25/06", time: "20h00", city: "Dallas" }
   ],
   G: [
     { t1: "Bélgica", t2: "Egito", date: "Seg 15/06", time: "16h00", city: "Seattle" },
@@ -125,86 +125,86 @@ const DEFAULT_MATCHES = {
     { t1: "Iraque", t2: "Noruega", date: "Ter 16/06", time: "19h00", city: "Boston" },
     { t1: "França", t2: "Iraque", date: "Seg 22/06", time: "18h00", city: "Filadélfia" },
     { t1: "Noruega", t2: "Senegal", date: "Seg 22/06", time: "21h00", city: "Nova York/NJ" },
-    { t1: "Noruega", t2: "França", date: "Sex 26/06", time: "16h00", city: "Boston" },
-    { t1: "Senegal", t2: "Iraque", date: "Sex 26/06", time: "16h00", city: "Toronto" }
+    { t1: "Senegal", t2: "Iraque", date: "Sex 26/06", time: "16h00", city: "Toronto" },
+    { t1: "Noruega", t2: "França", date: "Sex 26/06", time: "16h00", city: "Boston" }
   ],
   J: [
     { t1: "Argentina", t2: "Argélia", date: "Ter 16/06", time: "22h00", city: "Kansas City" },
     { t1: "Áustria", t2: "Jordânia", date: "Qua 17/06", time: "01h00*", city: "Santa Clara" },
     { t1: "Argentina", t2: "Áustria", date: "Seg 22/06", time: "14h00", city: "Dallas" },
     { t1: "Jordânia", t2: "Argélia", date: "Ter 23/06", time: "00h00*", city: "Santa Clara" },
-    { t1: "Argélia", t2: "Áustria", date: "Sáb 27/06", time: "23h00", city: "Kansas City" },
-    { t1: "Jordânia", t2: "Argentina", date: "Sáb 27/06", time: "23h00", city: "Dallas" }
+    { t1: "Jordânia", t2: "Argentina", date: "Sáb 27/06", time: "23h00", city: "Dallas" },
+    { t1: "Argélia", t2: "Áustria", date: "Sáb 27/06", time: "23h00", city: "Kansas City" }
   ],
   K: [
     { t1: "Portugal", t2: "RD Congo", date: "Qua 17/06", time: "14h00", city: "Houston" },
-    { t1: "Uzbequistão", t2: "Colômbia", date: "Qua 17/06", time: "21h00", city: "Cidade do México" },
+    { t1: "Uzbequistão", t2: "Colômbia", date: "Qua 17/06", time: "23h00", city: "Cidade do México" },
     { t1: "Portugal", t2: "Uzbequistão", date: "Ter 23/06", time: "14h00", city: "Houston" },
     { t1: "Colômbia", t2: "RD Congo", date: "Ter 23/06", time: "23h00", city: "Guadalajara" },
-    { t1: "Colômbia", t2: "Portugal", date: "Sáb 27/06", time: "20h30", city: "Miami" },
-    { t1: "RD Congo", t2: "Uzbequistão", date: "Sáb 27/06", time: "20h30", city: "Atlanta" }
+    { t1: "RD Congo", t2: "Uzbequistão", date: "Sáb 27/06", time: "20h30", city: "Atlanta" },
+    { t1: "Colômbia", t2: "Portugal", date: "Sáb 27/06", time: "20h30", city: "Miami" }
   ],
   L: [
     { t1: "Inglaterra", t2: "Croácia", date: "Qua 17/06", time: "17h00", city: "Dallas" },
     { t1: "Gana", t2: "Panamá", date: "Qua 17/06", time: "20h00", city: "Toronto" },
     { t1: "Inglaterra", t2: "Gana", date: "Ter 23/06", time: "17h00", city: "Boston" },
     { t1: "Panamá", t2: "Croácia", date: "Ter 23/06", time: "20h00", city: "Toronto" },
-    { t1: "Panamá", t2: "Inglaterra", date: "Sáb 27/06", time: "18h00", city: "Nova York/NJ" },
-    { t1: "Croácia", t2: "Gana", date: "Sáb 27/06", time: "18h00", city: "Filadélfia" }
+    { t1: "Croácia", t2: "Gana", date: "Sáb 27/06", time: "18h00", city: "Filadélfia" },
+    { t1: "Panamá", t2: "Inglaterra", date: "Sáb 27/06", time: "18h00", city: "Nova York/NJ" }
   ]
 };
 
 const KO_INFO = {
   "32": [
-    { date: "Dom 28/06", time: "22h00", city: "Los Angeles" },
-    { date: "Seg 29/06", time: "16h00", city: "Boston" },
-    { date: "Seg 29/06", time: "16h00", city: "Monterrey" },
-    { date: "Seg 29/06", time: "19h00", city: "Houston" },
-    { date: "Ter 30/06", time: "17h00", city: "Nova York/NJ" },
-    { date: "Ter 30/06", time: "19h00", city: "Dallas" },
+    { date: "Dom 28/06", time: "16h00", city: "Los Angeles" },
+    { date: "Seg 29/06", time: "14h00", city: "Boston" },
+    { date: "Seg 29/06", time: "17h30", city: "Monterrey" },
+    { date: "Seg 29/06", time: "22h00", city: "Houston" },
+    { date: "Ter 30/06", time: "14h00", city: "Nova York/NJ" },
+    { date: "Ter 30/06", time: "18h00", city: "Dallas" },
     { date: "Ter 30/06", time: "22h00", city: "Cidade do México" },
     { date: "Qua 01/07", time: "13h00", city: "Atlanta" },
-    { date: "Qua 01/07", time: "16h00", city: "Santa Clara" },
-    { date: "Qua 01/07", time: "16h00", city: "Seattle" },
+    { date: "Qua 01/07", time: "17h00", city: "Santa Clara" },
+    { date: "Qua 01/07", time: "21h00", city: "Seattle" },
     { date: "Qui 02/07", time: "16h00", city: "Toronto" },
-    { date: "Qui 02/07", time: "17h00", city: "Los Angeles" },
-    { date: "Qui 02/07", time: "19h00", city: "Vancouver" },
-    { date: "Sex 03/07", time: "17h00", city: "Miami" },
+    { date: "Qui 02/07", time: "20h00", city: "Los Angeles" },
+    { date: "Sex 03/07", time: "00h00*", city: "Vancouver" },
+    { date: "Sex 03/07", time: "15h00", city: "Miami" },
     { date: "Sex 03/07", time: "19h00", city: "Kansas City" },
-    { date: "Sex 03/07", time: "20h00", city: "Dallas" }
+    { date: "Sex 03/07", time: "22h30", city: "Dallas" }
   ],
   "16": [
-    { date: "Sáb 04/07", time: "17h00", city: "Filadélfia" },
-    { date: "Sáb 04/07", time: "20h00", city: "Houston" },
+    { date: "Sáb 04/07", time: "14h00", city: "Filadélfia" },
+    { date: "Sáb 04/07", time: "18h00", city: "Houston" },
     { date: "Dom 05/07", time: "17h00", city: "Nova York/NJ" },
-    { date: "Dom 05/07", time: "19h00", city: "Cidade do México" },
-    { date: "Seg 06/07", time: "17h00", city: "Dallas" },
-    { date: "Seg 06/07", time: "20h00", city: "Seattle" },
-    { date: "Ter 07/07", time: "17h00", city: "Atlanta" },
-    { date: "Ter 07/07", time: "19h00", city: "Vancouver" }
+    { date: "Dom 05/07", time: "21h00", city: "Cidade do México" },
+    { date: "Seg 06/07", time: "16h00", city: "Dallas" },
+    { date: "Seg 06/07", time: "21h00", city: "Seattle" },
+    { date: "Ter 07/07", time: "13h00", city: "Atlanta" },
+    { date: "Ter 07/07", time: "17h00", city: "Vancouver" }
   ],
   "8": [
     { date: "Qui 09/07", time: "17h00", city: "Boston" },
-    { date: "Sex 10/07", time: "17h00", city: "Los Angeles" },
-    { date: "Sáb 12/07", time: "17h00", city: "Miami" },
-    { date: "Sáb 12/07", time: "21h00", city: "Kansas City" }
+    { date: "Sex 10/07", time: "16h00", city: "Los Angeles" },
+    { date: "Sáb 11/07", time: "18h00", city: "Miami" },
+    { date: "Sáb 11/07", time: "22h00", city: "Kansas City" }
   ],
   "4": [
-    { date: "Ter 14/07", time: "17h00", city: "Dallas" },
-    { date: "Qua 15/07", time: "17h00", city: "Atlanta" }
+    { date: "Ter 14/07", time: "16h00", city: "Dallas" },
+    { date: "Qua 15/07", time: "16h00", city: "Atlanta" }
   ],
   "3": [
-    { date: "Sáb 18/07", time: "17h00", city: "Miami" }
+    { date: "Sáb 18/07", time: "18h00", city: "Miami" }
   ],
   "final": [
-    { date: "Dom 19/07", time: "17h00", city: "Nova York/NJ" }
+    { date: "Dom 19/07", time: "16h00", city: "Nova York/NJ" }
   ]
 };
 
 let matches = {};
 let knockout = {};
 
-const DATA_VERSION = "1.0.0";
+const DATA_VERSION = "1.0.1";
 
 function save() {
   const saveData = { version: DATA_VERSION, matches, knockout };
@@ -492,9 +492,15 @@ function render() {
   save();
 }
 
+function autoUpdate() {
+  render();
+  setTimeout(autoUpdate, 1000);
+}
+
 function init() {
   load();
   render();
+  autoUpdate();
 }
 
 init();
