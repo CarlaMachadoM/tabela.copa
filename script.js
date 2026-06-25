@@ -168,36 +168,36 @@ const KO_INFO = {
     { date: "Qua 01/07", time: "17h00", city: "Seattle" },
     { date: "Qui 02/07", time: "20h00", city: "Toronto" },
     { date: "Qui 02/07", time: "16h00", city: "Los Angeles" },
-    { date: "Sex 03/07", time: "21h00", city: "Vancouver" },
-    { date: "Sex 03/07", time: "19h00", city: "Miami" },
+    { date: "Sex 03/07", time: "00h00*", city: "Vancouver" },
+    { date: "Sex 03/07", time: "18h00", city: "Miami" },
     { date: "Sex 03/07", time: "22h30", city: "Kansas City" },
     { date: "Sex 03/07", time: "15h00", city: "Dallas" }
   ],
   "16": [
-    { date: "Sáb 04/07", time: "14h00", city: "Filadélfia" },
-    { date: "Sáb 04/07", time: "18h00", city: "Houston" },
-    { date: "Dom 05/07", time: "17h00", city: "Nova York/NJ" },
-    { date: "Dom 05/07", time: "21h00", city: "Cidade do México" },
-    { date: "Seg 06/07", time: "16h00", city: "Dallas" },
-    { date: "Seg 06/07", time: "21h00", city: "Seattle" },
-    { date: "Ter 07/07", time: "13h00", city: "Atlanta" },
-    { date: "Ter 07/07", time: "17h00", city: "Vancouver" }
+    { date: "Sáb 04/07", time: "19h00", city: "Filadélfia" },
+    { date: "Sáb 04/07", time: "16h00", city: "Houston" },
+    { date: "Dom 05/07", time: "18h00", city: "Nova York/NJ" },
+    { date: "Dom 05/07", time: "23h00", city: "Cidade do México" },
+    { date: "Seg 06/07", time: "18h00", city: "Dallas" },
+    { date: "Ter 07/07", time: "00h00*", city: "Seattle" },
+    { date: "Ter 07/07", time: "14h00", city: "Atlanta" },
+    { date: "Ter 07/07", time: "20h00", city: "Vancouver" }
   ],
   "8": [
-    { date: "Qui 09/07", time: "17h00", city: "Boston" },
-    { date: "Sex 10/07", time: "16h00", city: "Los Angeles" },
-    { date: "Sáb 11/07", time: "18h00", city: "Miami" },
-    { date: "Sáb 11/07", time: "22h00", city: "Kansas City" }
+    { date: "Qui 09/07", time: "18h00", city: "Boston" },
+    { date: "Sex 10/07", time: "17h00", city: "Los Angeles" },
+    { date: "Sáb 11/07", time: "19h00", city: "Miami" },
+    { date: "Sáb 11/07", time: "00h00*", city: "Kansas City" }
   ],
   "4": [
-    { date: "Ter 14/07", time: "16h00", city: "Dallas" },
-    { date: "Qua 15/07", time: "16h00", city: "Atlanta" }
+    { date: "Ter 14/07", time: "18h00", city: "Dallas" },
+    { date: "Qua 15/07", time: "17h00", city: "Atlanta" }
   ],
   "3": [
-    { date: "Sáb 18/07", time: "18h00", city: "Miami" }
+    { date: "Sáb 18/07", time: "19h00", city: "Miami" }
   ],
   "final": [
-    { date: "Dom 19/07", time: "16h00", city: "Nova York/NJ" }
+    { date: "Dom 19/07", time: "17h00", city: "Nova York/NJ" }
   ]
 };
 
