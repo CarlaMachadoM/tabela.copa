@@ -442,28 +442,27 @@ function generateKnockout() {
 
   const phase32Teams = [
     getTeam("A", 1), getTeam("B", 1),
-    getTeam("E", 0), T[0],
+    getTeam("E", 0), T[6],
     getTeam("F", 0), getTeam("C", 1),
     getTeam("C", 0), getTeam("F", 1),
     getTeam("I", 0), T[1],
     getTeam("E", 1), getTeam("I", 1),
-    getTeam("A", 0), T[2],
-    getTeam("L", 0), T[3],
+    getTeam("A", 0), T[3],
+    getTeam("L", 0), T[0],
     getTeam("D", 0), T[4],
-    getTeam("G", 0), T[5],
+    getTeam("G", 0), T[7],
     getTeam("K", 1), getTeam("L", 1),
     getTeam("H", 0), getTeam("J", 1),
-    getTeam("B", 0), T[6],
+    getTeam("B", 0), T[5],
     getTeam("J", 0), getTeam("H", 1),
-    getTeam("K", 0), T[7],
+    getTeam("K", 0), T[2],
     getTeam("D", 1), getTeam("G", 1)
   ];
 
   buildPhase("32", phase32Teams);
 
   const w32 = knockout["32"].map(getWinner);
-  // w32[0]=M73 w32[1]=M74 w32[2]=M75 w32[3]=M76 w32[4]=M77 w32[5]=M78 w32[6]=M79 w32[7]=M80
-  // w32[8]=M81 w32[9]=M82 w32[10]=M83 w32[11]=M84 w32[12]=M85 w32[13]=M86 w32[14]=M87 w32[15]=M88
+  
   const winners32 = [
     w32[1], w32[4],   // M89: Vencedor M74 x Vencedor M77
     w32[0], w32[2],   // M90: Vencedor M73 x Vencedor M75
@@ -477,7 +476,7 @@ function generateKnockout() {
   buildPhase("16", winners32);
 
   const w16 = knockout["16"].map(getWinner);
-  // w16[0]=M89 w16[1]=M90 w16[2]=M91 w16[3]=M92 w16[4]=M93 w16[5]=M94 w16[6]=M95 w16[7]=M96
+ 
   const winners16 = [
     w16[0], w16[1], // M97: Vencedor M89 x Vencedor M90
     w16[4], w16[5], // M98: Vencedor M93 x Vencedor M94
