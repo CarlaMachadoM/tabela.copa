@@ -317,13 +317,37 @@ function getLoser(game) {
 
 function getBestThirds() {
   let thirds = [];
+
   Object.keys(matches).forEach(g => {
     const res = calc(g);
-    if (res[2]) thirds.push(res[2]);
+    if (res[2]) {
+      thirds.push({
+        ...res[2],
+        group: g
+      });
+    }
   });
 
   return thirds
-    .sort((a, b) => b.pts - a.pts || b.sg - a.sg || b.gf - a.gf)
+    .sort((a, b) => {
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      if (b.sg !== a.sg) return b.sg - a.sg;
+      if (b.gf !== a.gf) return b.gf - a.gf;
+      if (a.ga !== b.ga) return a.ga - b.ga;
+
+      const order = {
+        "RD Congo": 0,
+        "Suécia": 1,
+        "Gana": 2,
+        "Equador": 3,
+        "Bósnia e Herzegovina": 4,
+        "Argélia": 5,
+        "Paraguai": 6,
+        "Senegal": 7
+      };
+
+      return (order[a.time] ?? 999) - (order[b.time] ?? 999);
+    })
     .slice(0, 8);
 }
 
