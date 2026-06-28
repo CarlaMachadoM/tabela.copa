@@ -460,7 +460,20 @@ function generateKnockout() {
   Object.keys(matches).forEach(g => standings[g] = calc(g));
   const thirds = getBestThirds();
 
-  const T = thirds.map(t => t?.time ?? "---");
+  const officialOrder = [
+  "RD Congo",
+  "Suécia",
+  "Gana",
+  "Equador",
+  "Bósnia e Herzegovina",
+  "Argélia",
+  "Paraguai",
+  "Senegal"
+];
+
+const T = officialOrder.filter(team =>
+  thirds.some(t => t.time === team)
+);
 
   const getTeam = (group, pos) => standings[group]?.[pos]?.time ?? "---";
 
