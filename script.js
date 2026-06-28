@@ -447,7 +447,7 @@ function generateKnockout() {
     getTeam("C", 0), getTeam("F", 1),
     getTeam("I", 0), T[1],
     getTeam("E", 1), getTeam("I", 1),
-    getTeam("A", 0), T[3],
+    getTeam("A", 0), T[2],
     getTeam("L", 0), T[0],
     getTeam("D", 0), T[4],
     getTeam("G", 0), T[7],
@@ -455,7 +455,7 @@ function generateKnockout() {
     getTeam("H", 0), getTeam("J", 1),
     getTeam("B", 0), T[5],
     getTeam("J", 0), getTeam("H", 1),
-    getTeam("K", 0), T[2],
+    getTeam("K", 0), T[3],
     getTeam("D", 1), getTeam("G", 1)
   ];
 
